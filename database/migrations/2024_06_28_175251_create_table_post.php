@@ -1,0 +1,42 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    /**
+     * Run the migrations.
+     */
+    public function up(): void
+    {
+        Schema::create('table_post', function (Blueprint $table) {
+            $table->id();
+            $table->string("title");
+            $table->text("content");
+
+            $table->unsignedBigInteger('Image_id');
+
+            $table->foreign('Image_id')->references('id')->on('table__image');
+            $table->unsignedBigInteger('admin_id');
+
+            $table->foreign('admin_id')->references('id')->on('table_admin');
+            $table->unsignedBigInteger('category_id');
+
+            $table->foreign('category_id')->references('id')->on('table_category');
+
+
+
+            $table->timestamps();
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     */
+    public function down(): void
+    {
+        Schema::dropIfExists('table_post');
+    }
+};
