@@ -11,11 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('table_category', function (Blueprint $table) {
-            $table->id();
-            
-            $table->timestamps();
-        });
+        
     }
 
     /**
@@ -23,6 +19,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('table_category');
+        //
     }
 };
