@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Post extends Model
 {
+   protected $table="table_post";
     use HasFactory;
     protected $fillable = ["title", "content", "Image_id"];
     public function admin(){
@@ -14,10 +15,10 @@ class Post extends Model
 
     }
     public function medias(){
-        $this->belongsToMany(media::class);
+      return   $this->belongsToMany(media::class);
     }
     public function category(){
-        $this->belongsToMany(category::class);
+        return $this->belongsTo(category::class);
 
     }
 
