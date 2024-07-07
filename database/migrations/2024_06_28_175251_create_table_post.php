@@ -16,13 +16,13 @@ return new class extends Migration
             $table->string("title");
             $table->text("content");
 
-            $table->unsignedBigInteger('Image_id');
+            $table->unsignedBigInteger('media_id')->nullable();
 
-            $table->foreign('Image_id')->references('id')->on('table__image');
-            $table->unsignedBigInteger('admin_id');
+            $table->foreign('media_id')->references('id')->on('table_media');
+            $table->unsignedBigInteger('admin_id')->nullable();
 
             $table->foreign('admin_id')->references('id')->on('table_admin');
-            $table->unsignedBigInteger('category_id');
+            $table->unsignedBigInteger('category_id')->nullable();
 
             $table->foreign('category_id')->references('id')->on('table_category');
 

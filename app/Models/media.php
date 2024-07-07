@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class media extends Model
 {
     use HasFactory;
+    protected $fillable = ["url"];
     protected $table="table_media";
     public function posts(){
         $this->belongsToMany(Post::class);

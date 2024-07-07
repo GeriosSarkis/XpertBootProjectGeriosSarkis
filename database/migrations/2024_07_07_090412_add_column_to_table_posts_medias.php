@@ -13,10 +13,10 @@ return new class extends Migration
     {
         Schema::table('table_posts_medias', function (Blueprint $table) {
 
-            $table->unsignedBigInteger('post_id');
+            $table->unsignedBigInteger('posts_id')->nullable();
 
             $table->foreign('posts_id')->references('id')->on('table_post');
-            $table->unsignedBigInteger('media_id');
+            $table->unsignedBigInteger('media_id')->nullable();
 
             $table->foreign('media_id')->references('id')->on('table_media');
         });

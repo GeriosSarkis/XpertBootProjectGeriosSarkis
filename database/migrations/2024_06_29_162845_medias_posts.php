@@ -11,11 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('table_post', function (Blueprint $table) {
-            $table->dropColumn('media_id');
-            $table->unsignedInteger("media_id");
-            $table->foreign('media_id')->references('id')->on('table_media');
-        });
+        
     }
 
     /**
@@ -23,8 +19,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('table_post', function (Blueprint $table) {
-
-        });
+        //
     }
 };
