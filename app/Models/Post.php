@@ -15,10 +15,10 @@ class Post extends Model
 
     }
     public function medias(){
-      return   $this->belongsToMany(media::class);
+      return   $this->belongsToMany(media::class,"table_posts_medias","media_id");
     }
     public function category(){
-        return $this->belongsTo(category::class);
+        return $this->belongsToMany(category::class,"table_posts_category","category_id");
 
     }
 

@@ -11,14 +11,16 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('table_posts_medias', function (Blueprint $table) {
-
+        Schema::create('table_posts_category', function (Blueprint $table) {
+            $table->id();
+       
             $table->unsignedBigInteger('post_id');
 
             $table->foreign('posts_id')->references('id')->on('table_post');
-            $table->unsignedBigInteger('media_id');
+            $table->unsignedBigInteger('category_id');
 
-            $table->foreign('media_id')->references('id')->on('table_media');
+            $table->foreign('category_id')->references('id')->on('table_category');
+            $table->timestamps();
         });
     }
 
@@ -27,8 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('table_posts_medias', function (Blueprint $table) {
-            //
-        });
+        Schema::dropIfExists('table_posts_category');
     }
 };

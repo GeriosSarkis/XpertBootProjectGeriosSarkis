@@ -4,6 +4,7 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Http\Requests\PostRequest;
 use App\Models\Post;
 use App\Models\media;
 use App\Models\admin;
@@ -34,15 +35,29 @@ class PostController extends Controller
      */
     public function create()
     {
-        //
+        //for Blade
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(PostRequest $request)
     {
-        //
+        $post =Post::create($request->all());
+        if ($post) {
+
+
+            return response()->json([
+                "status" => true,
+                "message" => "Post Aded Succes ",
+            ]);
+        }else{
+            return response()->json([
+
+                "status" => false,
+                "message" => "post not created "
+            ]);
+        }
     }
 
     /**
@@ -50,7 +65,24 @@ class PostController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $post=Post::find($id);
+        if($post)
+        {
+        return response()->json([
+            "status" => true,
+            "data" => $post,
+            "message" => "post found",
+
+
+        ]);
+    }
+    else{
+        return response()->json([
+
+            "status" => false,
+            "message" => "post not found "
+        ]);
+    }
     }
 
     /**
@@ -58,15 +90,30 @@ class PostController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        // for blade
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(PostRequest $request, string $id)
     {
-        //
+        $post = Post::find($id);
+        if ($post) {
+            $update_posts = Post::update($request->all());
+            return response()->json([
+
+                "data" => $update_posts,
+                "message" => "post Udpdated Succes ",
+                "status" => true
+            ]);
+        }
+        return response()->json([
+
+            "status" => false,
+            "message" => "post not found "
+        ]);
+
     }
 
     /**
@@ -74,6 +121,21 @@ class PostController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $post = Post::find($id);
+        if ($post) {
+            $delete = Post::destroy($post->id);
+            return response()->json([
+                "status" => true,
+                "message" => "delete succes"
+
+            ]);
+
+        } else {
+            return response()->json([
+
+                "status" => false,
+                "message" => "post not found "
+            ]);
+        }
     }
 }

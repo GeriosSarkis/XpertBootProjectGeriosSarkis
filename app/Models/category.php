@@ -9,10 +9,11 @@ class category extends Model
 {
 
     protected $table = "table_category";
+    
     use HasFactory;
 
     public function post(){
-        $this->belongsTo(Post::class);
+        $this->belongsToMany(Post::class);
     }
 
 }
