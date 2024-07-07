@@ -125,6 +125,7 @@ class PostController extends Controller
         if ($post) {
             $delete = Post::destroy($post->id);
             return response()->json([
+                "data"=>$post,
                 "status" => true,
                 "message" => "delete succes"
 
