@@ -11,16 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('table__image', function (Blueprint $table) {
+        Schema::create('table_media', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->unsignedBigInteger('post_id');
-
-            $table->foreign('post_id')->references('id')->on('table_post');
             $table->string("url");
             
-
-
         });
     }
 
@@ -29,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('table__image');
+        Schema::dropIfExists('table_media');
     }
 };
