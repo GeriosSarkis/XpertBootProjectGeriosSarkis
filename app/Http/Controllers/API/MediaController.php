@@ -74,7 +74,7 @@ class MediaController extends Controller
         $media = media::find($id);
         if($media)
         {
-            $update_media = media::update($request->all());
+            $update_media = $media->update($request->all());
             return response()->json([
 
                 "data" => $update_media,

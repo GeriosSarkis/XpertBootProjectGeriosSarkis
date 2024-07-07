@@ -84,7 +84,7 @@ class CategoryController extends Controller
         $category = category::find($id);
         if($category)
         {
-            $category_update = category::update($request->all());
+            $category_update = $category->update($request->all());
             return response()->json([
                 "data" => $category_update,
                 "status" => true,

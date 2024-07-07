@@ -49,6 +49,7 @@ class PostController extends Controller
 
             return response()->json([
                 "status" => true,
+                "data"=>$post,
                 "message" => "Post Aded Succes ",
             ]);
         }else{
@@ -100,10 +101,11 @@ class PostController extends Controller
     {
         $post = Post::find($id);
         if ($post) {
-            $update_posts = Post::update($request->all());
+            $update_posts =$post->update($request->all());
             return response()->json([
 
                 "data" => $update_posts,
+             
                 "message" => "post Udpdated Succes ",
                 "status" => true
             ]);

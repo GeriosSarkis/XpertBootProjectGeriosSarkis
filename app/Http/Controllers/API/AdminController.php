@@ -73,13 +73,23 @@ class AdminController extends Controller
      */
     public function update(AdminRequest $request, string $id)
     {
-        $admin = admin::update($request->all());
-        return response()->json([
-            "data" => $admin,
-            "status" => true,
-            "message" => "admin updated succces "
+        $admin = admin::find($id);
+        if ($admin) {
+            $admin_updated = $admin->update($request->all());
+            return response()->json([
+                "data" => $admin,
+                "status" => true,
+                "message" => "admin updated succces "
 
-        ]);
+            ]);
+        }
+        else{
+            return response()->json([
+
+                "status" => false,
+                "message" => "category not found "
+            ]);
+        }
     }
 
     /**
