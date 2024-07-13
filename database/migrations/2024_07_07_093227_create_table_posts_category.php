@@ -1,8 +1,13 @@
 <?php
 
+use App\Http\Requests\CategoryRequest;
+
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+
+use App\Models\Post;
+use App\Models\category;
 
 return new class extends Migration
 {
@@ -11,16 +16,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('table_posts_category', function (Blueprint $table) {
+        Schema::create('posts_category', function (Blueprint $table) {
+
+
             $table->id();
-
-            $table->unsignedBigInteger('posts_id')->nullable();
-
-            $table->foreign('posts_id')->references('id')->on('table_post');
-            $table->unsignedBigInteger('category_id')->nullable();
-
-            $table->foreign('category_id')->references('id')->on('table_category');
-            $table->timestamps();
+            $table->foreignIdFor(Post::class);
+            $table->foreignIdFor(category::class);
+                $table->timestamps();
         });
     }
 
@@ -29,7 +31,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('table_posts_category', function (Blueprint $table) {
+        Schema::table('posts_category', function (Blueprint $table) {
+
             //
         });
     }

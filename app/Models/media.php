@@ -9,7 +9,7 @@ class media extends Model
 {
     use HasFactory;
     protected $fillable = ["url"];
-    protected $table="table_media";
+    protected $table="medias";
     public function posts(){
         $this->belongsToMany(Post::class);
 

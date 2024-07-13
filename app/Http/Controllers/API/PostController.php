@@ -43,8 +43,14 @@ class PostController extends Controller
      */
     public function store(PostRequest $request)
     {
+
+
+
         $post =Post::create($request->all());
         if ($post) {
+            $post->attach_Category(request("category_id"));
+            $post->attach_Meidas(request("media_id"));
+            $post->admin()->attach(request("admin_id"));
 
 
             return response()->json([
@@ -105,7 +111,7 @@ class PostController extends Controller
             return response()->json([
 
                 "data" => $update_posts,
-             
+
                 "message" => "post Udpdated Succes ",
                 "status" => true
             ]);
@@ -141,4 +147,5 @@ class PostController extends Controller
             ]);
         }
     }
+
 }

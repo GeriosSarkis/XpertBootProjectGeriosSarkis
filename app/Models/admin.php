@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class admin extends Model
 {
     use HasFactory;
-    protected $table = "table_admin";
+    protected $table = "admin";
     public function posts(){
         return $this->belongsToMany(Post::class);
     }

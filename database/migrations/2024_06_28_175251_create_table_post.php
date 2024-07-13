@@ -11,24 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('table_post', function (Blueprint $table) {
+        Schema::create('post', function (Blueprint $table) {
             $table->id();
             $table->string("title");
             $table->text("content");
-
-            $table->unsignedBigInteger('media_id')->nullable();
-
-            $table->foreign('media_id')->references('id')->on('table_media');
-            $table->unsignedBigInteger('admin_id')->nullable();
-
-            $table->foreign('admin_id')->references('id')->on('table_admin');
-            $table->unsignedBigInteger('category_id')->nullable();
-
-            $table->foreign('category_id')->references('id')->on('table_category');
-
-
-
-            $table->timestamps();
+             $table->timestamps();
         });
     }
 
@@ -37,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('table_post');
+        Schema::dropIfExists('post');
     }
 };

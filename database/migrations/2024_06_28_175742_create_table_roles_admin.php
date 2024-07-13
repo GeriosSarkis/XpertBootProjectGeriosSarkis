@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use App\Models\admin;
 
 return new class extends Migration
 {
@@ -11,13 +12,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('table_roles_admin', function (Blueprint $table) {
+        Schema::create('roles_admin', function (Blueprint $table) {
             $table->id();
             $table->string("role_name");
-            $table->integer("priv"); $table->unsignedBigInteger('admin_id');
-
-            $table->foreign('admin_id')->references('id')->on('table_admin');
-
+            $table->integer("priv");
+            $table->foreignIdFor(admin::class);
             $table->timestamps();
         });
     }
@@ -27,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('table_roles_admin');
+        Schema::dropIfExists('roles_admin');
     }
 };

@@ -3,6 +3,8 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use App\Models\admin;
+use App\Models\Post;
 
 return new class extends Migration
 {
@@ -11,9 +13,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('table_media', function (Blueprint $table) {
-         
-            //
+        Schema::create('posts_admins', function (Blueprint $table) {
+            $table->id();
+            $table->foreignIdFor(Post::class);
+            $table->foreignIdFor(admin::class);
+            $table->timestamps();
         });
     }
 
@@ -22,8 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('table_media', function (Blueprint $table) {
-            //
-        });
+        Schema::dropIfExists('posts_admins');
     }
 };
