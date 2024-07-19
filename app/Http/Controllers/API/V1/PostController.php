@@ -4,10 +4,10 @@ namespace app\Http\Controllers\API\V1;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\PostRequest;
+use App\Http\Resources\PostRessource;
 use App\Models\Post;
 use Illuminate\Http\Request;
-use function App\Http\Controllers\API\request;
-use function App\Http\Controllers\API\response;
+
 
 class PostController extends Controller
 {
@@ -16,14 +16,9 @@ class PostController extends Controller
      */
     public function index()
     {
+
         $posts = Post::with("admin", "category", "medias")->get();
-    return response()->json([
-        "data"=>$posts,
-        "message"=>"All Post Get",
-        "status"=>true,
-
-
-]);
+    return PostRessource::collection($posts);
 
     }
 
@@ -107,13 +102,7 @@ class PostController extends Controller
         $post = Post::find($id);
         if ($post) {
             $update_posts =$post->update($request->all());
-            return response()->json([
-
-                "data" => $update_posts,
-
-                "message" => "post Udpdated Succes ",
-                "status" => true
-            ]);
+            return PostRessource::collection($post);
         }
         return response()->json([
 
