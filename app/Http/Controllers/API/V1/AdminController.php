@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\API;
+namespace app\Http\Controllers\API\V1;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-use App\Models\admin;
 use App\Http\Requests\AdminRequest;
+use App\Models\admin;
+use Illuminate\Http\Request;
+use function App\Http\Controllers\API\response;
 
 class AdminController extends Controller
 {

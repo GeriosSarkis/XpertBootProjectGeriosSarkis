@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\API;
+namespace app\Http\Controllers\API\V1;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use App\Http\Requests\MediaRequest;
 use App\Models\media;
-use  App\Http\Requests\MediaRequest;
+use Illuminate\Http\Request;
+use function App\Http\Controllers\API\response;
 
 class MediaController extends Controller
 {

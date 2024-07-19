@@ -1,9 +1,9 @@
 <?php
 
+use app\Http\Controllers\API\V1\MediaController;
+use app\Http\Controllers\API\V1\PostController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\API\PostController;
-use App\Http\Controllers\API\MediaController;
 
 Route::get('/user', function (Request $request) {
     return $request->user();
