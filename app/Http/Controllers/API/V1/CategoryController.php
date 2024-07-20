@@ -1,15 +1,11 @@
 <?php
 
-namespace app\Http\Controllers\API\V1;
+namespace App\Http\Controllers\API\V1;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CategoryRequest;
-use App\Http\Requests\MediaRequest;
 use App\Http\Resources\CategoryResource;
-use App\Http\Resources\MediaResouce;
 use App\Models\category;
-use App\Models\media;
-use Illuminate\Http\Request;
 
 
 class CategoryController extends Controller
@@ -36,8 +32,11 @@ class CategoryController extends Controller
      */
     public function store(CategoryRequest $request)
     {
+
         $category = category::create($request->all());
-        return new CategoryResource($category);
+
+            return new CategoryResource($category);
+
     }
 
     /**

@@ -25,12 +25,12 @@ class PostRequest extends FormRequest
             'title'=>"required|string",
 
             'content'=>"required|string",
-            "media_id"=>"required|number",
+            "media_id"=>"required|integer",
 
 
 
-            "admin_id"=>"required|number",
-            "category_id"=>"required|number",
+            "admin_id"=>"required|integer",
+            "category_id"=>"required|integer",
             //
         ];
     }

@@ -99,7 +99,7 @@ class PostController extends Controller
         $post = Post::find($id);
         if ($post) {
             $update_posts =$post->update($request->all());
-            return new  PostRessource($update_posts);
+            return new  PostRessource($post);
         }
         return response()->json([
 

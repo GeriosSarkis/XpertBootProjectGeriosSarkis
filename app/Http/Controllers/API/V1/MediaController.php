@@ -43,8 +43,13 @@ class MediaController extends Controller
      */
     public function show(string $id)
     {
-        $meia=media::findOrFail($id);
-        return new MediaResouce($meia);
+        $media=media::find($id);
+
+        if($media!=null){
+            return new MediaResouce($media);
+        }else{
+            response()->json(["message"=>"Media not found"],404);
+        }
     }
 
     /**

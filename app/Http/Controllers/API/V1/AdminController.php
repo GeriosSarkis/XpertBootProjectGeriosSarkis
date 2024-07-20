@@ -45,8 +45,16 @@ class AdminController extends Controller
      */
     public function show(string $id)
     {
-        $admin = admin::findOrFail($id);
+
+        $admin = admin::find($id);
+
+
+        if($admin!=null)
         return new AdminResource($admin);
+        else {
+
+            return response()->json(["message" => "No Admin Found"], 200);
+        }
 
     }
 

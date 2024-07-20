@@ -1,7 +1,7 @@
 <?php
 
 use app\Http\Controllers\API\V1\AdminController;
-use app\Http\Controllers\API\V1\CategoryController;
+use App\Http\Controllers\API\V1\CategoryController;
 use app\Http\Controllers\API\V1\MediaController;
 use App\Http\Controllers\API\V1\PostController;
 use Illuminate\Http\Request;
