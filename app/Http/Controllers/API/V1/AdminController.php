@@ -10,9 +10,7 @@ use function App\Http\Controllers\API\response;
 
 class AdminController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+
     public function index()
     {
         $admin = admin::all();

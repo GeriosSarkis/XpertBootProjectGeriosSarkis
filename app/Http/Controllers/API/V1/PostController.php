@@ -1,12 +1,13 @@
 <?php
 
-namespace app\Http\Controllers\API\V1;
+namespace App\Http\Controllers\API\V1;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\PostRequest;
 use App\Http\Resources\PostRessource;
 use App\Models\Post;
-use Illuminate\Http\Request;
+use App\Traits;
+use PhpParser\Builder\Trait_;
 
 
 class PostController extends Controller
@@ -69,22 +70,18 @@ class PostController extends Controller
         $post=Post::find($id);
         if($post)
         {
-        return response()->json([
-            "status" => true,
-            "data" => $post,
-            "message" => "post found",
-
-
-        ]);
+        return  new PostRessource($post);
     }
-    else{
+
+        /// error api reuqest muts be make buy a class
+        ///
         return response()->json([
 
             "status" => false,
             "message" => "post not found "
         ]);
     }
-    }
+
 
     /**
      * Show the form for editing the specified resource.
@@ -102,7 +99,7 @@ class PostController extends Controller
         $post = Post::find($id);
         if ($post) {
             $update_posts =$post->update($request->all());
-            return PostRessource::collection($post);
+            return new  PostRessource($update_posts);
         }
         return response()->json([
 
@@ -110,6 +107,27 @@ class PostController extends Controller
             "message" => "post not found "
         ]);
 
+    }
+    public function  replace(PostRequest $request, string $id)
+    {
+        $post = Post::findOrFail($id);
+        if ($post) {
+            $update_posts =$post->update($request->all());
+            if($update_posts)
+            return new PostRessource($post);
+            else{
+                return response()->json([
+
+                    "status" => false,
+                    "message" => "post not found "
+                ]);
+            }
+        }
+        return response()->json([
+
+            "status" => false,
+            "message" => "post not found "
+        ]);
     }
 
     /**

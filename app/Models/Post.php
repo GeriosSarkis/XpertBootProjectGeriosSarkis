@@ -9,7 +9,10 @@ class Post extends Model
 {
     protected $table = "post";
     use HasFactory;
-    protected $fillable = ["title", "content", "Image_id"];
+    protected $fillable = ["title", "content"];
+
+
+
     public function admin()
     {
         return $this->belongsToMany(admin::class,"posts_admins");
@@ -27,10 +30,13 @@ class Post extends Model
     }
     public function attach_Category(int $category_id)
     {
-        $this->category()->attach($category_id);
+        return $this->category()->attach($category_id);
     }
     public function attach_Meidas(int $media_id)
     {
-        $this->medias()->attach($media_id);
+       return  $this->medias()->attach($media_id);
+    }
+    public function tags(){
+        return $this->belongsToMany(tag::class);
     }
 }

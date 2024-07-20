@@ -4,9 +4,10 @@ namespace app\Http\Controllers\API\V1;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\MediaRequest;
+use App\Http\Resources\MediaResouce;
 use App\Models\media;
 use Illuminate\Http\Request;
-use function App\Http\Controllers\API\response;
+
 
 class MediaController extends Controller
 {
@@ -16,14 +17,7 @@ class MediaController extends Controller
     public function index()
     {
        $media=media::all();
-        return response()->json(
-            [
-                "data" => $media,
-                "message" => "all media get",
-                "status" => true,
-
-            ]
-        );
+        return MediaResouce::collection($media);
     }
 
     /**
@@ -40,13 +34,7 @@ class MediaController extends Controller
     public function store(MediaRequest $request)
     {
         $media = media::create($request->all());
-        return response()->json(
-            [
-            "data" => $media,
-            "message" => "media createtd suuccfuly",
-            "status" => true
-        ]
-    );
+        return new MediaResouce($media);
 
     }
 
@@ -55,7 +43,8 @@ class MediaController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $meia=media::findOrFail($id);
+        return new MediaResouce($meia);
     }
 
     /**
@@ -76,13 +65,7 @@ class MediaController extends Controller
         if($media)
         {
             $update_media = $media->update($request->all());
-            return response()->json([
-
-                "data" => $update_media,
-                "message" => "media updated succes ",
-                "status" => true
-
-            ]);
+            return new MediaResouce($media);
 
         } else{
             return response()->json([
@@ -92,24 +75,38 @@ class MediaController extends Controller
             ]);
         }
 
+    }public function  replace(MediaRequest $request, string $id)
+{
+    $media= media::findOrFail($id);
+    if ($media) {
+        $update_posts =$media->update($request->all());
+        if($update_posts)
+            return new MediaResouce($media);
+        else{
+            return \response()->json([
+
+                "status" => false,
+                "message" => "post not found "
+            ]);
+        }
     }
+    return response()->json([
+
+        "status" => false,
+        "message" => "post not found "
+    ]);
+}
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(string $id )
     {
         $media = media::find($id);
         if($media)
         {
             $media_to_delete = media::destroy($media->id);
-            return response()->json([
-                "data"=>$media,
-
-                "status" => true,
-                "message" => "delteted suuces",
-
-            ]);
+            return new MediaResouce($media);
         }
         else{
             return response()->json([
