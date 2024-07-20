@@ -1,5 +1,6 @@
 <?php
 
+use app\Http\Controllers\API\V1\CategoryController;
 use app\Http\Controllers\API\V1\MediaController;
 use App\Http\Controllers\API\V1\PostController;
 use Illuminate\Http\Request;
@@ -24,3 +25,11 @@ Route::put("/media/{id}",[MediaController::class,"update"]);
 Route::delete("/media/{id}", [MediaController::class, "destroy"]);
 Route::post("/media",[MediaController::class,"store"]);
 Route::patch("/media/{id}/replace",[MediaController::class,"replace"]);
+//// category
+Route::get("/categorys",[CategoryController::class,"index"]);
+Route::get("/category/{id}",[CategoryController::class,"show"]);
+
+Route::put("/category/{id}",[CategoryController::class,"update"]);
+Route::delete("/category/{id}", [CategoryController::class, "destroy"]);
+Route::post("/category",[CategoryController::class,"store"]);
+Route::patch("/category/{id}/replace",[CategoryController::class,"replace"]);

@@ -4,9 +4,13 @@ namespace app\Http\Controllers\API\V1;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CategoryRequest;
+use App\Http\Requests\MediaRequest;
+use App\Http\Resources\CategoryResource;
+use App\Http\Resources\MediaResouce;
 use App\Models\category;
+use App\Models\media;
 use Illuminate\Http\Request;
-use function App\Http\Controllers\API\response;
+
 
 class CategoryController extends Controller
 {
@@ -16,11 +20,7 @@ class CategoryController extends Controller
     public function index()
     {
         $categories = category::all();
-        return response()->json([
-            "data" => $categories,
-            "message" => "category all get",
-            "status" => true,
-        ]);
+        return CategoryResource::collection($categories);
     }
 
     /**
@@ -37,13 +37,7 @@ class CategoryController extends Controller
     public function store(CategoryRequest $request)
     {
         $category = category::create($request->all());
-        return response()->json([
-            "data" => $category,
-            "message" => "category created succes ",
-            "status" => true,
-
-
-        ]);
+        return new CategoryResource($category);
     }
 
     /**
@@ -54,11 +48,7 @@ class CategoryController extends Controller
         $category = category::find($id);
         if($category)
         {
-            return response()->json([
-                "data" => $category,
-                "status" => true,
-                "message" => "category found "
-            ]);
+            return new CategoryResource($category);
 
         }
     else{
@@ -87,12 +77,7 @@ class CategoryController extends Controller
         if($category)
         {
             $category_update = $category->update($request->all());
-            return response()->json([
-                "data" => $category_update,
-                "status" => true,
-                "message" => "categoru updated succes"
-
-            ]);
+            return new CategoryResource($category);
 
         }
         else{
@@ -103,7 +88,27 @@ class CategoryController extends Controller
             ]);
         }
     }
+    public function  replace(CategoryRequest $request, string $id)
+    {
+        $category= category::findOrFail($id);
+        if ($category) {
+            $updated_category =$category->update($request->all());
+            if($updated_category)
+                return new CategoryResource($category);
+            else{
+                return response()->json([
 
+                    "status" => false,
+                    "message" => "post not found "
+                ]);
+            }
+        }
+        return response()->json([
+
+            "status" => false,
+            "message" => "post not found "
+        ]);
+    }
     /**
      * Remove the specified resource from storage.
      */
@@ -112,11 +117,7 @@ class CategoryController extends Controller
         $category = category::find($id);
         if($category){
             $category_delete = category::destroy($id);
-            return response()->json([
-                "data" => $category,
-                "status" => true,
-                "message" => "category deleted succes",
-            ]);
+            return new CategoryResource($category);
 
         }else{
             return response()->json([
