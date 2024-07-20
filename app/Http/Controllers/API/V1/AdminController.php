@@ -4,9 +4,13 @@ namespace app\Http\Controllers\API\V1;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\AdminRequest;
+use App\Http\Requests\CategoryRequest;
+use App\Http\Resources\AdminResource;
+use App\Http\Resources\CategoryResource;
 use App\Models\admin;
+use App\Models\category;
 use Illuminate\Http\Request;
-use function App\Http\Controllers\API\response;
+
 
 class AdminController extends Controller
 {
@@ -14,11 +18,7 @@ class AdminController extends Controller
     public function index()
     {
         $admin = admin::all();
-        return response()->json([
-            "data" => $admin,
-            "message" => "admin get all",
-            "status" => true,
-        ]);
+        return AdminResource::collection($admin);
 
     }
 
@@ -36,12 +36,7 @@ class AdminController extends Controller
     public function store(AdminRequest $request)
     {
         $admin = admin::create($request->all());
-        return response()->json([
-            "data" => $admin,
-            "message" => "admin create succcees",
-            "status" => true,
-
-        ]);
+        return  new AdminResource($admin);
 
     }
 
@@ -50,12 +45,8 @@ class AdminController extends Controller
      */
     public function show(string $id)
     {
-        $admin = admin::findOrFailind($id);
-        return response()->json([
-            "status" => true,
-            "data" => $admin,
-            "message" => "get adminn scucces",
-        ]);
+        $admin = admin::findOrFail($id);
+        return new AdminResource($admin);
 
     }
 
@@ -75,12 +66,7 @@ class AdminController extends Controller
         $admin = admin::find($id);
         if ($admin) {
             $admin_updated = $admin->update($request->all());
-            return response()->json([
-                "data" => $admin,
-                "status" => true,
-                "message" => "admin updated succces "
-
-            ]);
+            return new AdminResource($admin);
         }
         else{
             return response()->json([
@@ -89,7 +75,27 @@ class AdminController extends Controller
                 "message" => "category not found "
             ]);
         }
+    }    public function  replace(AdminRequest $request, string $id)
+{
+    $admin= admin::findOrFail($id);
+    if ($admin) {
+        $updat_admin =$admin->update($request->all());
+        if($updat_admin)
+            return new CategoryResource($admin);
+        else{
+            return response()->json([
+
+                "status" => false,
+                "message" => "post not found "
+            ]);
+        }
     }
+    return response()->json([
+
+        "status" => false,
+        "message" => "post not found "
+    ]);
+}
 
     /**
      * Remove the specified resource from storage.

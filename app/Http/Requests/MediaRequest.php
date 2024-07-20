@@ -22,7 +22,7 @@ class MediaRequest extends FormRequest
     public function rules(): array
     {
         return [
-            "url"
+            "url"=>"string|required"
         ];
     }
 }

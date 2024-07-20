@@ -18,8 +18,15 @@ class AdminResource extends JsonResource
             "type"=>"admin",
             "id"=>$this->id,
             "attribute"=>[
-                ""
+                "email"=>$this->email,
+                "password"=>$this->password,
+                "username"=>$this->username,
+                "phone_number"=>$this->phone_number,
+                "email_verified_at"=>$this->email_verified_at,
+                "remember_token"=>$this->remember_token,
+
+
             ]
-        ]
+        ];
     }
 }

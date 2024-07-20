@@ -3,7 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-
+use Closure;
 class AdminRequest extends FormRequest
 {
     /**
@@ -22,7 +22,14 @@ class AdminRequest extends FormRequest
     public function rules(): array
     {
         return [
-            "username","password","email","phone_number"
+            "username"=>"required|string",
+            "password"=>"required|string|min:8"
+        ,"email"=>"required|email|unique:admin,email",
+            "phone_number"=>["required|number", function (string $attribute, mixed $value, Closure $fail) {
+                if (strpos($value,'961')) {
+                    $fail("The {$attribute} is invalid.");
+                }
+            },]
         ];
     }
 }

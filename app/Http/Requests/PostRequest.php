@@ -22,7 +22,15 @@ class PostRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'title','content',"media_id","admin_id","category_id"
+            'title'=>"required|string",
+
+            'content'=>"required|string",
+            "media_id"=>"required|number",
+
+
+
+            "admin_id"=>"required|number",
+            "category_id"=>"required|number",
             //
         ];
     }
