@@ -4,6 +4,7 @@ use app\Http\Controllers\API\V1\AdminController;
 use App\Http\Controllers\API\V1\CategoryController;
 use app\Http\Controllers\API\V1\MediaController;
 use App\Http\Controllers\API\V1\PostController;
+use App\Http\Controllers\API\V1\TagController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -41,3 +42,12 @@ Route::put("/admin/{id}",[AdminController::class,"update"]);
 Route::delete("/admin/{id}", [AdminController::class, "destroy"]);
 Route::post("/admin",[AdminController::class,"store"]);
 Route::patch("/admin/{id}/replace",[AdminController::class,"replace"]);
+
+/////tags////
+///
+Route::get("/tags",[TagController::class,"index"]);
+Route::get("/tag/{id}",[TagController::class,"show"]);
+Route::put("/tag/{id}",[TagController::class,"update"]);
+Route::delete("/tag/{id}", [TagController::class, "destroy"]);
+Route::post("/tag",[TagController::class,"store"]);
+Route::patch("/tag/{id}/replace",[TagController::class,"replace"]);
