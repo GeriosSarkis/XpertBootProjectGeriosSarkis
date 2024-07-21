@@ -15,16 +15,16 @@ class Post extends Model
 
     public function admin()
     {
-        return $this->belongsToMany(admin::class,"posts_admins");
+        return $this->belongsToMany(admin::class,"post_admin");
 
     }
     public function medias()
     {
-        return $this->belongsToMany(media::class,"posts_medias");
+        return $this->belongsToMany(media::class,"post_media");
     }
     public function category()
     {
-        return $this->belongsToMany(category::class,"posts_category")
+        return $this->belongsToMany(category::class,"post_category")
         ;
 
     }
@@ -37,6 +37,6 @@ class Post extends Model
        return  $this->medias()->attach($media_id);
     }
     public function tags(){
-        return $this->belongsToMany(tag::class);
+        return $this->belongsToMany(tag::class,"post_tag");
     }
 }

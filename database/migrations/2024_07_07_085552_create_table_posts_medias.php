@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('posts_medias', function (Blueprint $table) {
+        Schema::create('post_media', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(Post::class);
             $table->foreignIdFor(media::class);

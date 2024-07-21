@@ -28,7 +28,26 @@ class PostRessource extends JsonResource
 
 
 
-            ]
+            ],
+            "relationships"=>[
+                "admin"=>[
+                    "data"=> $this->when($this->admin, function () {
+                        return AdminResource::collection($this->admin);
+
+                    })  ],
+                "category"=>[
+                    "data"=>$this->when($this->category, function () {
+                        return CategoryResource::collection($this->category);
+
+                    })
+                ],
+                    "media"=>[
+                        "data"=>$this->when($this->media, function () {
+                            return MediaResouce::collection($this->media);
+
+                        })
+                    ]
+    ],
 
 
 
