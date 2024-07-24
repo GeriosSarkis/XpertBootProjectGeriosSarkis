@@ -18,7 +18,7 @@ class Post extends Model
         return $this->belongsToMany(admin::class,"post_admin");
 
     }
-    public function medias()
+    public function media()
     {
         return $this->belongsToMany(media::class,"post_media");
     }
@@ -28,13 +28,17 @@ class Post extends Model
         ;
 
     }
-    public function attach_Category(int $category_id)
+    public function attach_category(int $category_id)
     {
         return $this->category()->attach($category_id);
     }
-    public function attach_Meidas(int $media_id)
+    public function attach_meida(int $media_id)
     {
-       return  $this->medias()->attach($media_id);
+       return  $this->media()->attach($media_id);
+    }
+    public function attach_admin(int $admin_id)
+    {
+        return  $this->admin()->attach($admin_id);
     }
     public function tags(){
         return $this->belongsToMany(tag::class,"post_tag");

@@ -34,17 +34,17 @@ class DatabaseSeeder extends Seeder
             );
         });
         $posts->each(function ($post) use ($category) {
-            $post->categorys()->attach(
+            $post->category()->attach(
                 $category->random(2)->pluck('id')->toArray() // Attach 2 random tags to each post
             );
         });
         $posts->each(function ($post) use ($media) {
-            $post->medias()->attach(
+            $post->media()->attach(
                 $media->random(2)->pluck('id')->toArray() // Attach 2 random tags to each post
             );
         });
         $posts->each(function ($post) use ($admin) {
-            $post->admins()->attach(
+            $post->admin()->attach(
                 $admin->random(2)->pluck('id')->toArray() // Attach 2 random tags to each post
             );
         });

@@ -18,7 +18,7 @@ class PostController extends Controller
     public function index()
     {
 
-        $posts = Post::with("admin", "category", "medias")->get();
+        $posts = Post::with("admin", "category", "media")->get();
     return PostRessource::collection($posts);
 
     }
@@ -43,8 +43,8 @@ class PostController extends Controller
 
         $post =Post::create($request->all());
         if ($post) {
-            $post->attach_Category(request("category_id"));
-            $post->attach_Meidas(request("media_id"));
+            $post->attach_category(request("category_id"));
+            $post->attach_meida(request("media_id"));
             $post->admin()->attach(request("admin_id"));
 
 
@@ -99,6 +99,12 @@ class PostController extends Controller
         $post = Post::find($id);
         if ($post) {
             $update_posts =$post->update($request->all());
+            $admin_id=request("admin_id");
+            $category_id=request("category_id");
+            $media_id=request("media_id");
+            $post->attach_category(request("category_id"));
+            $post->attach_meida(request("media_id"));
+            $post->attach_admin(request("admin_id"));
             return new  PostRessource($post);
         }
         return response()->json([
@@ -113,6 +119,12 @@ class PostController extends Controller
         $post = Post::findOrFail($id);
         if ($post) {
             $update_posts =$post->update($request->all());
+         $admin_id=request("admin_id");
+            $category_id=request("category_id");
+            $media_id=request("media_id");
+            $post->attach_category(request("category_id"));
+            $post->attach_meida(request("media_id"));
+            $post->attach_admin(request("admin_id"));
             if($update_posts)
             return new PostRessource($post);
             else{
