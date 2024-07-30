@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Builder;
+use App\Http\Filters\V1\QueryFilter;
 
 class category extends Model
 {
@@ -14,7 +16,11 @@ class category extends Model
     use HasFactory;
 
     public function post(){
-        $this->belongsToMany(Post::class);
+        $this->belongsToMany(Post::class,"post_category");
+    }
+
+    public function scopeFilter(Builder $builder, QueryFilter $filters) {
+        return $filters->apply($builder);
     }
 
 }

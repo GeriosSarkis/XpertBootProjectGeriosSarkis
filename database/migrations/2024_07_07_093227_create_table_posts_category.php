@@ -22,7 +22,7 @@ return new class extends Migration
             $table->id();
             $table->foreignIdFor(Post::class);
             $table->foreignIdFor(category::class);
-                $table->timestamps();
+            $table->timestamps();
         });
     }
 

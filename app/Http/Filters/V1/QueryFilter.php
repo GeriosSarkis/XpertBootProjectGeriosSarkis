@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 abstract class QueryFilter {
     protected $builder;
     protected $request;
-    protected $sortable = [];
+    protected $sortable = [""];
 
     public function __construct(Request $request)
     {
@@ -23,7 +23,7 @@ abstract class QueryFilter {
                 $this->$key($value);
             }
         }
-     
+
         return $builder;
     }
 
@@ -31,6 +31,7 @@ abstract class QueryFilter {
         foreach($arr as $key => $value) {
             if (method_exists($this, $key)) {
                 $this->$key($value);
+                var_dump($this->$key($value));
             }
         }
 
