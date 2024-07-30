@@ -4,7 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-
+use Illuminate\Database\Eloquent\Builder;
+use App\Http\Filters\V1\QueryFilter;
 class Post extends Model
 {
     protected $table = "post";
@@ -42,5 +43,8 @@ class Post extends Model
     }
     public function tags(){
         return $this->belongsToMany(tag::class,"post_tag");
+    }
+    public function scopeFilter(Builder $builder, QueryFilter $filters) {
+        return $filters->apply($builder);
     }
 }

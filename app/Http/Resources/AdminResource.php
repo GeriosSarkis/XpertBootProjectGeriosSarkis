@@ -17,7 +17,7 @@ class AdminResource extends JsonResource
         return [
             "type"=>"admin",
             "id"=>$this->id,
-            "attribute"=>[
+            "attributes"=>[
                 "email"=>$this->email,
                 "password"=>$this->password,
                 "username"=>$this->username,

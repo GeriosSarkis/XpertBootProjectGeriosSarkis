@@ -1,13 +1,12 @@
 <?php
 
 namespace App\Http\Controllers\API\V1;
-
+use App\Http\Filters\V1\PostsFilter;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\PostRequest;
 use App\Http\Resources\PostRessource;
+
 use App\Models\Post;
-use App\Traits;
-use PhpParser\Builder\Trait_;
 
 
 class PostController extends Controller
@@ -15,11 +14,10 @@ class PostController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(PostsFilter $postFilter)
     {
+        return PostRessource::collection(Post::filter($postFilter)->paginate());
 
-        $posts = Post::with("admin", "category", "media")->get();
-    return PostRessource::collection($posts);
 
     }
 
