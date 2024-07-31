@@ -9,19 +9,17 @@ use Illuminate\Http\Request;
 use App\Models\Post;
 use App\Http\Controllers\Controller;
 use App\Models\category;
+use Illuminate\Database\Eloquent\Builder;
+
 class CategoryPostsController extends Controller
 {
     public function index($category_id, PostsFilter $postsFilter)
     {
-        // Retrieve the category by ID
-        // Retrieve the category by ID
-        $category = Category::findOrFail($category_id);
-
-        // Get the posts query for the category and apply the filter
-        $postsQuery = $category->post()->filter($postsFilter);
-
-        // Get the posts after applying the filter
-        $posts = $postsQuery->get();
+        $posts = Post::with('category')
+            ->whereHas('category', function ($query) use ($category_id) {
+                $query->where('category_id', $category_id);
+            })->
+            filter($postsFilter)->get();
 
         return PostRessource::collection($posts);
     }
