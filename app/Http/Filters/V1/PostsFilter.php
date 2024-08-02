@@ -6,6 +6,9 @@ namespace App\Http\Filters\V1;
 
 class PostsFilter extends QueryFilter
 {
+    public function include($value) {
+        return $this->builder->with($value);
+    }
     public function title($value)
     {
         $likeStr = str_replace('*', '%', $value);

@@ -2,27 +2,40 @@
 
 namespace App\Http\Resources;
 
+use App\Http\Requests\PostRequest;
+use Filament\Resources\Resource;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class TagResource extends JsonResource
+class PostResource extends Resource
 {
+
+
     /**
      * Transform the resource into an array.
      *
      * @return array<string, mixed>
      */
-    public function toArray(Request $request): array
+    public function toArray(PostRequest|Request $request): array
     {
         return [
 
-            "type"=>"tag",
+            "type"=>'posts',
             "id"=>$this->id,
-            "attributes"=>[
-                "name"=>$this->name,
+            "title"=>$this->title,
+                "content"=>$this->content,
                 "created_at"=>$this->created_at,
-        "updated_at"=>$this->updated_at,
-            ]
+                "updated_at"=>$this->updated_at,
+
+
+
+
+
+
+
+
+
+
         ];
     }
 }

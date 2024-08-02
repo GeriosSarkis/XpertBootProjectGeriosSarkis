@@ -4,9 +4,8 @@ namespace App\Http\Controllers\API\V1;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\TagRequest;
-use App\Http\Resources\TagResource;
+use App\Http\Resources\V1\TagResource;
 use App\Models\tag;
-use Illuminate\Http\Request;
 
 class TagController extends Controller
 {

@@ -1,11 +1,10 @@
 <?php
 
 namespace App\Http\Controllers\API\V1;
-use App\Http\Filters\V1\PostsFilter;
 use App\Http\Controllers\Controller;
+use App\Http\Filters\V1\PostsFilter;
 use App\Http\Requests\PostRequest;
-use App\Http\Resources\PostRessource;
-
+use App\Http\Resources\V1\PostRessource;
 use App\Models\Post;
 
 
