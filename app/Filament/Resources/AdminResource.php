@@ -2,12 +2,11 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\ModelNameResource\Pages;
-use App\Filament\Resources\ModelNameResource\RelationManagers;
-use App\Models\ModelName;
-use App\Models\Post;
+use App\Filament\Resources\AdminResource\Pages;
+use App\Filament\Resources\AdminResource\RelationManagers;
+use App\Models\Admin;
+use Faker\Provider\ar_EG\Text;
 use Filament\Forms;
-use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -17,9 +16,9 @@ use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
-class ModelPostResource extends Resource
+class AdminResource extends Resource
 {
-    protected static ?string $model = Post::class;
+    protected static ?string $model = Admin::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
@@ -27,28 +26,24 @@ class ModelPostResource extends Resource
     {
         return $form
             ->schema([
-                TextInput::make('title'),
-                TextInput::make('slug'),
-                RichEditor::make('content'),
-                TextInput::make('number')
-                    ->numeric()
-                    ->step(100),
-                    TextInput::make('number')->numeric(),
+            TextInput::make("username"),
+            TextInput::make("email")->email(),
+            TextInput::make ("phone_number"),
+            TextInput::make("password")->password()->minLength(8)->visibleOn("create")
+
+                //
             ]);
-
-
-
     }
 
     public static function table(Table $table): Table
     {
         return $table
             ->columns([
-                TextColumn::make('id')->sortable(),
-                TextColumn::make('title')->sortable()->searchable(),
-                TextColumn::make('content')->limit(50),
-                TextColumn::make('created_at')->dateTime(),
-                TextColumn::make('updated_at')->dateTime(),
+                TextColumn::make("username"),
+                TextColumn::make("email"),
+                TextColumn::make("phone_number"),
+                TextColumn::make("created_at"),
+                TextColumn::make("updated_at"),
                 //
             ])
             ->filters([
@@ -74,10 +69,9 @@ class ModelPostResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListPostsNames::route('/'),
-            'create' => Pages\CreatePostName::route('/create'),
-            'edit' => Pages\EditPostName::route('/{record}/edit'),
-
+            'index' => Pages\ListAdmins::route('/'),
+            'create' => Pages\CreateAdmin::route('/create'),
+            'edit' => Pages\EditAdmin::route('/{record}/edit'),
         ];
     }
 }

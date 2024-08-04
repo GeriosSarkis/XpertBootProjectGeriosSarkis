@@ -1,13 +1,12 @@
 <?php
 
-namespace App\Filament\Resources\ModelNameResource\Pages;
+namespace App\Filament\Resources\PostResource\Pages;
 
-use App\Filament\Resources\ModelPostResource;
-use App\Http\Resources\PostResource;
+use App\Filament\Resources\PostResource;
 use Filament\Actions;
 use Filament\Resources\Pages\EditRecord;
 
-class EditPostName extends EditRecord
+class EditPost extends EditRecord
 {
     protected static string $resource = PostResource::class;
 
