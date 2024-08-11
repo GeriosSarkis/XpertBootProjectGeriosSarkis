@@ -1,13 +1,11 @@
 <?php
 
-use App\Http\Requests\CategoryRequest;
 
+use App\Models\Post;
+use App\Models\Post_PostType;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-
-use App\Models\Post;
-use App\Models\category;
 
 return new class extends Migration
 {
@@ -16,12 +14,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('post_category', function (Blueprint $table) {
-
-
+        Schema::create('post_post_types', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(Post::class);
-            $table->foreignIdFor(category::class);
+            $table->foreignIdFor(Post_PostType::class);
             $table->timestamps();
         });
     }
@@ -31,9 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('post_category', function (Blueprint $table) {
-
-            //
-        });
+        Schema::dropIfExists('post_post_types');
     }
 };

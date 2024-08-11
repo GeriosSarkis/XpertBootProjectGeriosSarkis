@@ -5,11 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class roles extends Model
+class PostType extends Model
 {
+    protected $table = 'post_types';
     use HasFactory;
-    protected $table = 'roles';
-    public function user(){
-        return $this->belongsTo(user::class);
-    }
 }

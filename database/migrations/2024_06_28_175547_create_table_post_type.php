@@ -12,9 +12,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('post_type', function (Blueprint $table) {
+        Schema::create('post_types', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(Post::class);
+            $table->string('name');
+
             $table->timestamps();
         });
     }
@@ -24,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('post_type');
+        Schema::dropIfExists('post_types');
     }
 };
