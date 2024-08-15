@@ -13,6 +13,12 @@ class Post_PostType extends Model
     {
         return $this->hasMany(Post::class,"post__post_type_id");
     }
+    public function category_post_type()
+    {
+        return $this->belongsToMany(category::class, "post_type_category");
+
+
+    }
 
 
 }

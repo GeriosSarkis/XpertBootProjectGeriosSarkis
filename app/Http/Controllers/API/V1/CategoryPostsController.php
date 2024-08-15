@@ -12,8 +12,8 @@ class CategoryPostsController extends Controller
     public function index($category_id, PostsFilter $postsFilter)
     {
 
-        $posts = Post::with('category')
-            ->whereHas('category', function ($query) use ($category_id) {
+        $posts = Post::with('category_post')
+            ->whereHas('category_post', function ($query) use ($category_id) {
                 $query->where('category_id',"=", $category_id);
             })->
             filter($postsFilter)->get();

@@ -14,7 +14,7 @@ class Post extends Model
 
     public function post_type() // Corrected naming convention
     {
-        return $this->belongsTo(Post_PostType::class,); // Assuming one post belongs to one post type
+        return $this->belongsTo(Post_PostType::class); // Assuming one post belongs to one post type
     }
 
     public function admin()
@@ -22,15 +22,16 @@ class Post extends Model
         return $this->belongsToMany(admin::class,"post_admin");
 
     }
-    public function category()
+    public function category_post()
     {
-        return $this->belongsToMany(category::class, "post_category");
+        return $this->belongsToMany(category::class);
 
 
     }
+
     public function attach_category(int $category_id)
 {
-    return $this->category()->attach($category_id);
+    return $this->category_post()->attach($category_id);
 }
     public function media()
     {

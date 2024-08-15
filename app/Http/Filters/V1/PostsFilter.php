@@ -15,7 +15,7 @@ class PostsFilter extends QueryFilter
         return $this->builder->where('title', 'like', $likeStr);
     }
     public function category($value){
-        return $this->builder->where("categort", $value);
+        return $this->builder->where("category", $value);
 
     }
     public function updatedAt($value) {

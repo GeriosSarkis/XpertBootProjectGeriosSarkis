@@ -28,15 +28,30 @@ class DatabaseSeeder extends Seeder
             $post->post_type_id = $posts_type->random()->id;
             $post->save();
         });
+
         // Attach tags to posts
         $posts->each(function ($post) use ($tags) {
             $post->tags()->attach($tags->random(2)->pluck('id')->toArray());
         });
 
-        // Attach category to posts (assuming a one-to-many relationship)
-        $posts->each(function ($post) use ($categories) {
-            $post->category_id = $categories->random()->id; // Assuming a single category per post
-            $post->save();
+        // $posts->each(function ($post) use ($categories) {
+        //     // Attach one or more random categories to the post
+        //     $post->category()->attach(
+        //         $categories->random(rand(1, $categories->count()))->pluck('id')->toArray()
+        //     );
+        // });
+        $posts->each(function ($posts) use ($categories) {
+            // Attach one or more random categories to the post
+            $posts->category_post()->attach(
+                $categories->random(rand(1, $categories->count()))->pluck('id')->toArray()
+            );
+        });
+
+        $posts_type->each(function ($posts_type) use ($categories) {
+            // Attach one or more random categories to the post
+            $posts_type->category_post_type()->attach(
+                $categories->random(rand(1, $categories->count()))->pluck('id')->toArray()
+            );
         });
 
         // Attach media to posts (assuming a many-to-many relationship)
@@ -46,7 +61,7 @@ class DatabaseSeeder extends Seeder
 
         // Attach admin to posts (assuming a many-to-many relationship)
         $posts->each(function ($post) use ($admins) {
-            $post->admins()->attach($admins->random(2)->pluck('id')->toArray());
+            $post->admin()->attach($admins->random(2)->pluck('id')->toArray());
         });
     }
 }
