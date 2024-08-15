@@ -16,7 +16,7 @@ class category extends Model
     use HasFactory;
 
     public function post_type(){
-        $this->belongsToMany(Post_PostType::class);
+        $this->belongsToMany(_PostType::class);
     }
     public function post(){
         $this->belongsToMany(Post::class);

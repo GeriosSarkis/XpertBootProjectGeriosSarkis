@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Post_PostType;
+use App\Models\_PostType;
 use Illuminate\Http\Request;
 
 class PostPostTypeController extends Controller
@@ -34,7 +34,7 @@ class PostPostTypeController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Post_PostType $post_PostType)
+    public function show(_PostType $post_PostType)
     {
         //
     }
@@ -42,7 +42,7 @@ class PostPostTypeController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Post_PostType $post_PostType)
+    public function edit(_PostType $post_PostType)
     {
         //
     }
@@ -50,7 +50,7 @@ class PostPostTypeController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Post_PostType $post_PostType)
+    public function update(Request $request, _PostType $post_PostType)
     {
         //
     }
@@ -58,7 +58,7 @@ class PostPostTypeController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Post_PostType $post_PostType)
+    public function destroy(_PostType $post_PostType)
     {
         //
     }

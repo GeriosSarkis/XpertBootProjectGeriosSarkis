@@ -14,7 +14,7 @@ class Post extends Model
 
     public function post_type() // Corrected naming convention
     {
-        return $this->belongsTo(Post_PostType::class); // Assuming one post belongs to one post type
+        return $this->belongsTo(_PostType::class); // Assuming one post belongs to one post type
     }
 
     public function admin()

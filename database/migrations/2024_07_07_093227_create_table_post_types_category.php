@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Schema;
 
 use App\Models\Post;
 use App\Models\category;
-use App\Models\Post_PostType;
+use App\Models\_PostType;
 
 return new class extends Migration
 {
@@ -21,7 +21,7 @@ return new class extends Migration
 
 
             $table->id();
-            $table->foreignIdFor(Post_PostType::class);
+            $table->foreignIdFor(_PostType::class);
             $table->foreignIdFor(category::class);
             $table->timestamps();
         });

@@ -1,7 +1,7 @@
 <?php
 
 use App\Models\category;
-use App\Models\Post_PostType;
+use App\Models\_PostType;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string("title");
             $table->text("content");
-           
+
             $table->string("slug")->unique()->nullable();
 
 
