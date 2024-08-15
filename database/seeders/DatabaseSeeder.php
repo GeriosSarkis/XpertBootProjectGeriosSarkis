@@ -3,6 +3,7 @@ use App\Models\admin;
 use App\Models\category;
 use App\Models\media;
 use App\Models\Post;
+use App\Models\User;
 use App\Models\Post_PostType;
 use App\Models\tag;
 use Illuminate\Database\Seeder;
@@ -12,6 +13,7 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         // Create models
+        $user = User::factory()->count(1)->create();
         $posts_type = Post_PostType::factory()->count(20)->create();
         $posts = Post::factory()->count(10)->create();
         $tags = tag::factory()->count(5)->create();
