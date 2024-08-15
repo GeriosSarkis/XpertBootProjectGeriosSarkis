@@ -16,7 +16,7 @@ class category extends Model
     use HasFactory;
 
     public function post(){
-        $this->belongsToMany(Post::class,"post_category");
+        $this->belongsToMany(Post_PostType::class);
     }
 
     public function scopeFilter(Builder $builder, QueryFilter $filters) {

@@ -8,4 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class Post_PostType extends Model
 {
     use HasFactory;
+    protected $table = 'post_type';
+    public function posts()
+    {
+        return $this->hasMany(Post::class,"post__post_type_id");
+    }
+
+
 }

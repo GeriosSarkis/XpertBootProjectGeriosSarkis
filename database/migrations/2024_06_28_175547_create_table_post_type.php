@@ -3,7 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-use App\Models\Post;
+use App\Models\Post_PostType;
 
 return new class extends Migration
 {
@@ -12,8 +12,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('post_types', function (Blueprint $table) {
+        Schema::create('post_type', function (Blueprint $table) {
             $table->id();
+
+
             $table->string('name');
 
             $table->timestamps();
@@ -25,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('post_types');
+        Schema::dropIfExists('post_type');
     }
 };
