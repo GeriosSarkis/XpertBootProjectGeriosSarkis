@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\_PostType;
+use App\Models\PostType;
 use Illuminate\Http\Request;
 
 class PostPostTypeController extends Controller
@@ -12,7 +13,8 @@ class PostPostTypeController extends Controller
      */
     public function index()
     {
-        //
+        $post_types=PostType::all();
+        return $post_types;
     }
 
     /**
