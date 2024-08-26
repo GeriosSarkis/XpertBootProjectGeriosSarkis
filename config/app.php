@@ -117,7 +117,11 @@ return [
     | Supported drivers: "file", "cache"
     |
     */
-
+//    'providers' => [
+//        // Other service providers...
+//
+//        Filament\FilamentServiceProvider::class,
+//    ],
     'maintenance' => [
         'driver' => env('APP_MAINTENANCE_DRIVER', 'file'),
         'store' => env('APP_MAINTENANCE_STORE', 'database'),
