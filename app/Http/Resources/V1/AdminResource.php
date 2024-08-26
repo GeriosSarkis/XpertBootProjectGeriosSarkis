@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Resources;
+namespace App\Http\Resources\V1;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
@@ -17,7 +17,7 @@ class AdminResource extends JsonResource
         return [
             "type"=>"admin",
             "id"=>$this->id,
-            "attribute"=>[
+            "attributes"=>[
                 "email"=>$this->email,
                 "password"=>$this->password,
                 "username"=>$this->username,

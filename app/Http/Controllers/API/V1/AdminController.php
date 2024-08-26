@@ -4,12 +4,9 @@ namespace app\Http\Controllers\API\V1;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\AdminRequest;
-use App\Http\Requests\CategoryRequest;
-use App\Http\Resources\AdminResource;
-use App\Http\Resources\CategoryResource;
+use App\Http\Resources\V1\AdminResource;
+use App\Http\Resources\V1\CategoryResource;
 use App\Models\admin;
-use App\Models\category;
-use Illuminate\Http\Request;
 
 
 class AdminController extends Controller

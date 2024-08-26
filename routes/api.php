@@ -5,6 +5,7 @@ use App\Http\Controllers\API\V1\CategoryController;
 use app\Http\Controllers\API\V1\MediaController;
 use App\Http\Controllers\API\V1\PostController;
 use App\Http\Controllers\API\V1\TagController;
+use App\Http\Controllers\API\V1\CategoryPostsController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -51,3 +52,8 @@ Route::put("/tag/{id}",[TagController::class,"update"]);
 Route::delete("/tag/{id}", [TagController::class, "destroy"]);
 Route::post("/tag",[TagController::class,"store"]);
 Route::patch("/tag/{id}/replace",[TagController::class,"replace"]);
+///////// Category Pots//R
+
+
+
+Route::get("/category/{id}/posts", [CategoryPostsController::class, "index"]);

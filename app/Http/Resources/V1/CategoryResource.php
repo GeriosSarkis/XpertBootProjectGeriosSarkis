@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Resources;
+namespace App\Http\Resources\V1;
 
 use App\Http\Requests\CategoryRequest;
 use Illuminate\Http\Request;
@@ -22,8 +22,20 @@ class CategoryResource extends JsonResource
                 "name"=>$this->name,
                 "created_at"=>$this->created_at,
         "updated_at"=>$this->updated_at,
-            ]
+            ],
+            "realtionshsip"=>[
 
-            ];
+
+                "posts"=>[
+    "data"=>new PostRessource($this->whenLoaded('post')),
+    ]
+
+
+
+
+
+
+                ],
+        ];
     }
 }

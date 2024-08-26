@@ -13,7 +13,7 @@ class Post_Controller extends Controller
     public function index()
     {
         $posts = Post::all()->toArray();
-        return view("posts.all",$posts);
+        return view("/posts",$posts);
     }
 
     /**

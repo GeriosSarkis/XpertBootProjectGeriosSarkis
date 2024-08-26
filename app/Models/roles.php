@@ -8,7 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class roles extends Model
 {
     use HasFactory;
-    public function admin(){
-        return $this->belongsTo(admin::class);
+    protected $table = 'roles';
+    public function user(){
+        return $this->belongsTo(user::class);
     }
 }

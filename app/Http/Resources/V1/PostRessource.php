@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Resources;
+namespace App\Http\Resources\V1;
 
 use App\Http\Requests\PostRequest;
 use Illuminate\Http\Request;
@@ -36,8 +36,8 @@ class PostRessource extends JsonResource
 
                     })  ],
                 "category"=>[
-                    "data"=>$this->when($this->category, function () {
-                        return CategoryResource::collection($this->category);
+                    "data"=>$this->when($this->category_post, function () {
+                        return  CategoryResource::collection($this->category_post);
 
                     })
                 ],

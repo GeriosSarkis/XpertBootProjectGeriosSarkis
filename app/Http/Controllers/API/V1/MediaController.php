@@ -4,9 +4,8 @@ namespace app\Http\Controllers\API\V1;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\MediaRequest;
-use App\Http\Resources\MediaResouce;
+use App\Http\Resources\V1\MediaResouce;
 use App\Models\media;
-use Illuminate\Http\Request;
 
 
 class MediaController extends Controller
