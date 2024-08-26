@@ -3,6 +3,7 @@ use App\Models\admin;
 use App\Models\category;
 use App\Models\media;
 use App\Models\Post;
+use App\Models\PostType;
 use App\Models\User;
 use App\Models\_PostType;
 use App\Models\tag;
@@ -14,7 +15,7 @@ class DatabaseSeeder extends Seeder
     {
         // Create models
         $user = User::factory()->count(1)->create();
-        $posts_type = _PostType::factory()->count(20)->create();
+        $posts_type = PostType::factory()->count(20)->create();
         $posts = Post::factory()->count(10)->create();
         $tags = tag::factory()->count(5)->create();
         $categories = category::factory()->count(5)->create(); // Corrected plural name

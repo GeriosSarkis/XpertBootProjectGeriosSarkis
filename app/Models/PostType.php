@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class PostType extends Model
 {
+
+    ///from _POSTTye to PostType
     use HasFactory;
     protected $table = 'post_type';
     public function posts()
