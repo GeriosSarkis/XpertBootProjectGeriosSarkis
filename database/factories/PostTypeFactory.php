@@ -9,6 +9,8 @@ use Illuminate\Database\Eloquent\Factories\Factory;
  */
 class PostTypeFactory extends Factory
 {
+////error db seed fixed
+///  ///
     /**
      * Define the model's default state.
      *

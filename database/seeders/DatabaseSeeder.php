@@ -13,6 +13,8 @@ class DatabaseSeeder extends Seeder
 {
     public function run(): void
     {
+        ///fix dbb problenm and seed
+        ///
         // Create models
         $user = User::factory()->count(1)->create();
         $posts_type = PostType::factory()->count(20)->create();

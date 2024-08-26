@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
+    ///fix db seed nad erorr
     /**
      * Run the migrations.
      */
