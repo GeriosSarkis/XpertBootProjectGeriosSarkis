@@ -19,12 +19,12 @@ class Post extends Model
 
     public function admin()
     {
-        return $this->belongsToMany(admin::class,"post_admin");
+        return $this->belongsToMany(Admin::class,"post_admin");
 
     }
     public function category_post()
     {
-        return $this->belongsToMany(category::class);
+        return $this->belongsToMany(Category::class);
 
 
     }
@@ -35,7 +35,7 @@ class Post extends Model
 }
     public function media()
     {
-        return $this->belongsToMany(media::class,"post_media");
+        return $this->belongsToMany(Media::class,"post_media");
     }
 
 
@@ -48,7 +48,7 @@ class Post extends Model
         return  $this->admin()->attach($admin_id);
     }
     public function tags(){
-        return $this->belongsToMany(tag::class,"post_tag");
+        return $this->belongsToMany(Tag::class,"post_tag");
     }
     public function scopeFilter(Builder $builder, QueryFilter $filters) {
         return $filters->apply($builder);

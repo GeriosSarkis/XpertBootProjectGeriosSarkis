@@ -5,7 +5,7 @@ namespace app\Http\Controllers\API\V1;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\MediaRequest;
 use App\Http\Resources\V1\MediaResouce;
-use App\Models\media;
+use App\Models\Media;
 
 
 class MediaController extends Controller
@@ -15,7 +15,7 @@ class MediaController extends Controller
      */
     public function index()
     {
-       $media=media::all();
+       $media=Media::all();
         return MediaResouce::collection($media);
     }
 
@@ -32,7 +32,7 @@ class MediaController extends Controller
      */
     public function store(MediaRequest $request)
     {
-        $media = media::create($request->all());
+        $media = Media::create($request->all());
         return new MediaResouce($media);
 
     }
@@ -42,7 +42,7 @@ class MediaController extends Controller
      */
     public function show(string $id)
     {
-        $media=media::find($id);
+        $media=Media::find($id);
 
         if($media!=null){
             return new MediaResouce($media);
@@ -65,7 +65,7 @@ class MediaController extends Controller
      */
     public function update(MediaRequest $request, string $id)
     {
-        $media = media::find($id);
+        $media = Media::find($id);
         if($media)
         {
             $update_media = $media->update($request->all());
@@ -81,7 +81,7 @@ class MediaController extends Controller
 
     }public function  replace(MediaRequest $request, string $id)
 {
-    $media= media::findOrFail($id);
+    $media= Media::findOrFail($id);
     if ($media) {
         $update_posts =$media->update($request->all());
         if($update_posts)
@@ -106,10 +106,10 @@ class MediaController extends Controller
      */
     public function destroy(string $id )
     {
-        $media = media::find($id);
+        $media = Media::find($id);
         if($media)
         {
-            $media_to_delete = media::destroy($media->id);
+            $media_to_delete = Media::destroy($media->id);
             return new MediaResouce($media);
         }
         else{

@@ -1,15 +1,15 @@
 <?php
 namespace Database\Factories;
 
-use App\Models\roles;
+use App\Models\Roles;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\roles>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Roles>
  */
 class RolesFactory extends Factory
 {
-    protected $model = roles::class;
+    protected $model = Roles::class;
 
     /**
      * Define the model's default state.

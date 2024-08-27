@@ -1,6 +1,6 @@
 <?php
 
-use App\Models\category;
+use App\Models\Category;
 use App\Models\_PostType;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;

@@ -1,6 +1,6 @@
 <?php
 
-use App\Models\category;
+use App\Models\Category;
 use App\Models\Post;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('category_post', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(category::class);
+            $table->foreignIdFor(Category::class);
             $table->foreignIdFor(Post::class);
             $table->timestamps();
         });

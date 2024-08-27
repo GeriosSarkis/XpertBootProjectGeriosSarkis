@@ -5,7 +5,7 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\PostResource\Pages;
 use App\Filament\Resources\PostResource\RelationManagers;
 use App\Http\Resources\V1\CategoryResource;
-use App\Models\category;
+use App\Models\Category;
 use App\Models\Post;
 use Filament\Forms;
 use Filament\Forms\Components\TextInput;
@@ -34,7 +34,7 @@ class PostResource extends Resource
                 MarkdownEditor::make("content")->required(),
 
                 Select::make("Category")->options(
-category::all()->pluck("name","id")
+Category::all()->pluck("name","id")
                 ),
                 FileUpload::make('Post_Photos'),
 

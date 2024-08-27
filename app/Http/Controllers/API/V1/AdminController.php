@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\AdminRequest;
 use App\Http\Resources\V1\AdminResource;
 use App\Http\Resources\V1\CategoryResource;
-use App\Models\admin;
+use App\Models\Admin;
 
 
 class AdminController extends Controller
@@ -14,7 +14,7 @@ class AdminController extends Controller
 
     public function index()
     {
-        $admin = admin::all();
+        $admin = Admin::all();
         return AdminResource::collection($admin);
 
     }
@@ -32,7 +32,7 @@ class AdminController extends Controller
      */
     public function store(AdminRequest $request)
     {
-        $admin = admin::create($request->all());
+        $admin = Admin::create($request->all());
         return  new AdminResource($admin);
 
     }
@@ -43,7 +43,7 @@ class AdminController extends Controller
     public function show(string $id)
     {
 
-        $admin = admin::find($id);
+        $admin = Admin::find($id);
 
 
         if($admin!=null)
@@ -68,7 +68,7 @@ class AdminController extends Controller
      */
     public function update(AdminRequest $request, string $id)
     {
-        $admin = admin::find($id);
+        $admin = Admin::find($id);
         if ($admin) {
             $admin_updated = $admin->update($request->all());
             return new AdminResource($admin);
@@ -82,7 +82,7 @@ class AdminController extends Controller
         }
     }    public function  replace(AdminRequest $request, string $id)
 {
-    $admin= admin::findOrFail($id);
+    $admin= Admin::findOrFail($id);
     if ($admin) {
         $updat_admin =$admin->update($request->all());
         if($updat_admin)
@@ -107,9 +107,9 @@ class AdminController extends Controller
      */
     public function destroy(string $id)
     {
-        $admin = admin::find($id);
+        $admin = Admin::find($id);
         if ($admin) {
-            $delete = admin::destroy($admin->id);
+            $delete = Admin::destroy($admin->id);
             return response()->json([
                 "data"=>$admin,
                 "status" => true,

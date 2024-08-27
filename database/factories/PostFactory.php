@@ -2,10 +2,10 @@
 
 namespace Database\Factories;
 
-use App\Models\admin;
-use App\Models\category;
-use App\Models\media;
-use App\Models\tag;
+use App\Models\Admin;
+use App\Models\Category;
+use App\Models\Media;
+use App\Models\Tag;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**

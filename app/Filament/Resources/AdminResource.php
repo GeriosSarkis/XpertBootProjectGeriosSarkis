@@ -4,7 +4,7 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\AdminResource\Pages;
 use App\Filament\Resources\AdminResource\RelationManagers;
-use App\Models\admin;
+use App\Models\Admin;
 use Faker\Provider\ar_EG\Text;
 use Filament\Forms;
 use Filament\Forms\Components\TextInput;
@@ -18,7 +18,7 @@ use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class AdminResource extends Resource
 {
-    protected static ?string $model = admin::class;
+    protected static ?string $model = Admin::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 

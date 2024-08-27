@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 use App\Http\Filters\V1\QueryFilter;
 
-class category extends Model
+class Category extends Model
 {
 
     protected $table = "category";

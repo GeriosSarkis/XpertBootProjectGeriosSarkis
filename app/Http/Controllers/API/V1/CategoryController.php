@@ -5,7 +5,7 @@ namespace App\Http\Controllers\API\V1;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CategoryRequest;
 use App\Http\Resources\V1\CategoryResource;
-use App\Models\category;
+use App\Models\Category;
 
 
 class CategoryController extends Controller
@@ -15,7 +15,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categories = category::all();
+        $categories = Category::all();
         return CategoryResource::collection($categories);
     }
 
@@ -33,7 +33,7 @@ class CategoryController extends Controller
     public function store(CategoryRequest $request)
     {
 
-        $category = category::create($request->all());
+        $category = Category::create($request->all());
 
             return new CategoryResource($category);
 
@@ -44,7 +44,7 @@ class CategoryController extends Controller
      */
     public function show(string $id)
     {
-        $category = category::find($id);
+        $category = Category::find($id);
         if($category)
         {
             return new CategoryResource($category);
@@ -72,7 +72,7 @@ class CategoryController extends Controller
      */
     public function update(CategoryRequest $request, string $id)
     {
-        $category = category::find($id);
+        $category = Category::find($id);
         if($category)
         {
             $category_update = $category->update($request->all());
@@ -89,7 +89,7 @@ class CategoryController extends Controller
     }
     public function  replace(CategoryRequest $request, string $id)
     {
-        $category= category::findOrFail($id);
+        $category= Category::findOrFail($id);
         if ($category) {
             $updated_category =$category->update($request->all());
             if($updated_category)
@@ -113,9 +113,9 @@ class CategoryController extends Controller
      */
     public function destroy(string $id)
     {
-        $category = category::find($id);
+        $category = Category::find($id);
         if($category){
-            $category_delete = category::destroy($id);
+            $category_delete = Category::destroy($id);
             return new CategoryResource($category);
 
         }else{

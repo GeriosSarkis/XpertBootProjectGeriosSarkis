@@ -5,7 +5,7 @@ namespace App\Http\Controllers\API\V1;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\TagRequest;
 use App\Http\Resources\V1\TagResource;
-use App\Models\tag;
+use App\Models\Tag;
 
 class TagController extends Controller
 {
@@ -14,7 +14,7 @@ class TagController extends Controller
      */
     public function index()
     {
-        $tags = tag::all();
+        $tags = Tag::all();
         return TagResource::collection($tags);
     }
 
@@ -31,7 +31,7 @@ class TagController extends Controller
      */
     public function store(TagRequest $request)
     {
-        $tag=tag::create($request->all());
+        $tag=Tag::create($request->all());
         if($tag)
         {
             return new TagResource($tag);
@@ -46,7 +46,7 @@ class TagController extends Controller
      */
     public function show(String $id)
     {
-        $tag=tag::find($id);
+        $tag=Tag::find($id);
         if($tag!=null)
         return new tagResource($tag);
         else{
@@ -57,7 +57,7 @@ class TagController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(tag $tag)
+    public function edit(Tag $tag)
     {
         //for blade
     }
@@ -67,7 +67,7 @@ class TagController extends Controller
      */
     public function update(TagRequest $request, String $id )
     {
-        $tag=tag::find($id);
+        $tag=Tag::find($id);
         if($tag!=null)
         {
             $updated_tag= $tag->update($request->all());
@@ -79,7 +79,7 @@ class TagController extends Controller
         }
     }  public function replace(TagRequest $request, String $id )
 {
-    $tag=tag::find($id);
+    $tag=Tag::find($id);
     if($tag!=null)
     {
         $tag_updated= $tag->update($request->all());
@@ -99,7 +99,7 @@ class TagController extends Controller
     public function destroy(String $id)
 
     {
-        $tag=tag::find($id);
+        $tag=Tag::find($id);
         if($tag!=null) {
             $tag->delete();
             return new TagResource($tag);

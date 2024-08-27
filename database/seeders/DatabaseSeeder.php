@@ -1,12 +1,12 @@
 <?php
-use App\Models\admin;
-use App\Models\category;
-use App\Models\media;
+use App\Models\Admin;
+use App\Models\Category;
+use App\Models\Media;
 use App\Models\Post;
 use App\Models\PostType;
 use App\Models\User;
 use App\Models\_PostType;
-use App\Models\tag;
+use App\Models\Tag;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -19,10 +19,10 @@ class DatabaseSeeder extends Seeder
         $user = User::factory()->count(1)->create();
         $posts_type = PostType::factory()->count(20)->create();
         $posts = Post::factory()->count(10)->create();
-        $tags = tag::factory()->count(5)->create();
-        $categories = category::factory()->count(5)->create(); // Corrected plural name
-        $media = media::factory()->count(5)->create();
-        $admins = admin::factory()->count(3)->create(); // Corrected plural name
+        $tags = Tag::factory()->count(5)->create();
+        $categories = Category::factory()->count(5)->create(); // Corrected plural name
+        $media = Media::factory()->count(5)->create();
+        $admins = Admin::factory()->count(3)->create(); // Corrected plural name
 
         // Create models
 

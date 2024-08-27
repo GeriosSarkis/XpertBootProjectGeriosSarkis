@@ -3,7 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-use App\Models\admin;
+use App\Models\Admin;
 
 return new class extends Migration
 {
@@ -16,7 +16,7 @@ return new class extends Migration
             $table->id();
             $table->string("role_name");
             $table->integer("priv");
-            $table->foreignIdFor(admin::class);
+            $table->foreignIdFor(Admin::class);
             $table->timestamps();
         });
     }

@@ -8,7 +8,7 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
 use App\Models\Post;
-use App\Models\category;
+use App\Models\Category;
 use App\Models\_PostType;
 
 return new class extends Migration
@@ -23,7 +23,7 @@ return new class extends Migration
 
             $table->id();
             $table->foreignIdFor(PostType::class);
-            $table->foreignIdFor(category::class);
+            $table->foreignIdFor(Category::class);
             $table->timestamps();
         });
     }

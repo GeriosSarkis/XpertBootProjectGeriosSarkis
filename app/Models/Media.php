@@ -5,11 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class tag extends Model
+class Media extends Model
 {
     use HasFactory;
-    protected $table  ="tag";
-    protected $fillable=["name"];
+    protected $fillable = ["url"];
+    protected $table="media";
     public function posts(){
         $this->belongsToMany(Post::class);
 

@@ -17,7 +17,7 @@ class PostType extends Model
     }
     public function category_post_type()
     {
-        return $this->belongsToMany(category::class, "post_type_category");
+        return $this->belongsToMany(Category::class, "post_type_category");
 
 
     }

@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class admin extends Model
+class Admin extends Model
 {
     use HasFactory;
     protected $fillable=["username", "email","password","phone_number"];
@@ -14,6 +14,6 @@ class admin extends Model
         return $this->belongsToMany(Post::class);
     }
     public function roles(){
-        return $this->belongsTo(admin::class);
+        return $this->belongsTo(Admin::class);
     }
 }
