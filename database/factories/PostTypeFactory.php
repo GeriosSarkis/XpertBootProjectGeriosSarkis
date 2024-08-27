@@ -7,8 +7,10 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\_PostType>
  */
-class Post_PostTypeFactory extends Factory
+class PostTypeFactory extends Factory
 {
+////error db seed fixed
+///  ///
     /**
      * Define the model's default state.
      *
