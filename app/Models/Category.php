@@ -11,12 +11,12 @@ class Category extends Model
 {
 
     protected $table = "category";
-    protected $fillable=["name"];
+    protected $guarded=[];
 
     use HasFactory;
 
-    public function post_type(){
-        $this->belongsToMany(PostType::class);
+    public function category_post_type(){
+       return  $this->belongsToMany(PostType::class,"post_type_category","post_type_id");
     }
     public function scopeFilter(Builder $builder, QueryFilter $filters) {
         return $filters->apply($builder);
