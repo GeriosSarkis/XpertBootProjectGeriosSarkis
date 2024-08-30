@@ -33,9 +33,8 @@ class PostResource extends Resource
                 TextInput::make("title")->required(),
                 MarkdownEditor::make("content")->required(),
 
-                Select::make("Category")->options(
-Category::all()->pluck("name","id")
-                ),
+
+
                 FileUpload::make('Post_Photos'),
 
                 TextInput::make("admin_id")->hidden()
