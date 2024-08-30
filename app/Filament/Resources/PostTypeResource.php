@@ -4,6 +4,7 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\PostTypeResource\Pages;
 use App\Filament\Resources\PostTypeResource\RelationManagers;
+use App\Filament\Resources\PostTypeResource\RelationManagers\CategoryPostTypeRelationManager;
 use App\Models\PostType;
 use Filament\Forms;
 use Filament\Forms\Components\TextInput;
@@ -54,7 +55,7 @@ class PostTypeResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
+           CategoryPostTypeRelationManager::class
         ];
     }
 

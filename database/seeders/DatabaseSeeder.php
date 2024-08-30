@@ -45,12 +45,12 @@ class DatabaseSeeder extends Seeder
         //         $categories->random(rand(1, $categories->count()))->pluck('id')->toArray()
         //     );
         // });
-        $posts->each(function ($posts) use ($categories) {
-            // Attach one or more random categories to the post
-            $posts->category_post()->attach(
-                $categories->random(rand(1, $categories->count()))->pluck('id')->toArray()
-            );
-        });
+//        $posts->each(function ($posts) use ($categories) {
+//            // Attach one or more random categories to the post
+//            $posts->category_post()->attach(
+//                $categories->random(rand(1, $categories->count()))->pluck('id')->toArray()
+//            );
+//        });
 
         $posts_type->each(function ($posts_type) use ($categories) {
             // Attach one or more random categories to the post

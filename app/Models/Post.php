@@ -12,9 +12,9 @@ class Post extends Model
     use HasFactory;
     protected $fillable = ["title", "content"];
 
-    public function post_type() // Corrected naming convention
+    public function post_types() // Corrected naming convention
     {
-        return $this->belongsTo(_PostType::class); // Assuming one post belongs to one post type
+        return $this->belongsToMany(PostType::class); // Assuming one post belongs to one post type
     }
 
     public function admin()
@@ -22,12 +22,7 @@ class Post extends Model
         return $this->belongsToMany(Admin::class,"post_admin");
 
     }
-    public function category_post()
-    {
-        return $this->belongsToMany(Category::class);
 
-
-    }
 
     public function attach_category(int $category_id)
 {

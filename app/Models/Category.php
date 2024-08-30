@@ -18,9 +18,6 @@ class Category extends Model
     public function post_type(){
         $this->belongsToMany(PostType::class);
     }
-    public function post(){
-        $this->belongsToMany(Post::class);
-    }
     public function scopeFilter(Builder $builder, QueryFilter $filters) {
         return $filters->apply($builder);
     }
