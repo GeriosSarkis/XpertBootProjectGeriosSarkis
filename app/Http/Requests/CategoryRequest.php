@@ -15,15 +15,11 @@ class CategoryRequest extends FormRequest
         return true;
     }
 
-    /**
-     * Get the validation rules that apply to the request.
-     *
-     * @return array<string, ValidationRule|array|string>
-     */
+
     public function rules(): array
     {
         return [
-            'name'=>"required|unique:category,name"
+            'name'=>"required|unique:categories,name"
         ];
     }
 

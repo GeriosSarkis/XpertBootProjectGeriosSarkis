@@ -14,6 +14,7 @@ class Category extends Model
     use HasFactory;
     protected $table = 'categories';
 
+
     protected $guarded=[];
 
     public function categries_posts_types(){
@@ -21,6 +22,7 @@ class Category extends Model
     }
 
     public function scopeFilter(Builder $builder, QueryFilter $filters) {
+
         return $filters->apply($builder);
     }
 
