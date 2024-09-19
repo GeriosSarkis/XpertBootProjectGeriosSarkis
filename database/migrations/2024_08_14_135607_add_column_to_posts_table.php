@@ -14,7 +14,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('post', function (Blueprint $table) {
+        Schema::table('posts', function (Blueprint $table) {
             $table->foreignIdFor(PostType::class,"post_type_id")->nullable();
         });
     }

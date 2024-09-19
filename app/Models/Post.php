@@ -8,18 +8,17 @@ use Illuminate\Database\Eloquent\Builder;
 use App\Http\Filters\V1\QueryFilter;
 class Post extends Model
 {
-    protected $table = "post";
     use HasFactory;
     protected $fillable = ["title", "content"];
 
     public function post_types() // Corrected naming convention
     {
-        return $this->belongsToMany(PostType::class); // Assuming one post belongs to one post type
+        return $this->belongsTo(PostType::class); // Assuming one post belongs to one post type
     }
 
     public function admin()
     {
-        return $this->belongsToMany(Admin::class,"post_admin");
+        return $this->belongsToMany(Admin::class);
 
     }
 
@@ -30,7 +29,7 @@ class Post extends Model
 }
     public function media()
     {
-        return $this->belongsToMany(Media::class,"post_media");
+        return $this->belongsToMany(Media::class);
     }
 
 
@@ -43,7 +42,7 @@ class Post extends Model
         return  $this->admin()->attach($admin_id);
     }
     public function tags(){
-        return $this->belongsToMany(Tag::class,"post_tag");
+        return $this->belongsToMany(Tag::class);
     }
     public function scopeFilter(Builder $builder, QueryFilter $filters) {
         return $filters->apply($builder);

@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('admin', function (Blueprint $table) {
+        Schema::table('admins', function (Blueprint $table) {
             $table->timestamp("email_verified_at")->nullable();
             $table->string("remember_token")->nullable();
             //
@@ -23,7 +23,7 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('admin', function (Blueprint $table) {
+        Schema::table('admins', function (Blueprint $table) {
             //
         });
     }

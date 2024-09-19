@@ -10,13 +10,13 @@ use App\Http\Filters\V1\QueryFilter;
 class Category extends Model
 {
 
-    protected $table = "category";
+
     protected $guarded=[];
 
     use HasFactory;
 
     public function category_post_type(){
-       return  $this->belongsToMany(PostType::class,"post_type_category","post_type_id");
+       return  $this->belongsToMany(PostType::class);
     }
     public function scopeFilter(Builder $builder, QueryFilter $filters) {
         return $filters->apply($builder);
