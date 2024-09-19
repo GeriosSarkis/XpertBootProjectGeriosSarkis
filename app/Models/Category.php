@@ -11,13 +11,15 @@ class Category extends Model
 {
 
 
+    use HasFactory;
+    protected $table = 'categories';
+
     protected $guarded=[];
 
-    use HasFactory;
-
-    public function category_post_type(){
-       return  $this->belongsToMany(PostType::class);
+    public function categries_posts_types(){
+        return $this->belongsToMany(PostType::class, 'categories_posts_types'); // Explicitly set the pivot table
     }
+
     public function scopeFilter(Builder $builder, QueryFilter $filters) {
         return $filters->apply($builder);
     }

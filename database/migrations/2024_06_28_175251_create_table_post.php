@@ -2,6 +2,7 @@
 
 use App\Models\Category;
 use App\Models\_PostType;
+use App\Models\PostType;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -17,6 +18,7 @@ return new class extends Migration
             $table->id();
             $table->string("title");
             $table->text("content");
+
 
 
 

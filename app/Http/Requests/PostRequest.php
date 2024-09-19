@@ -30,7 +30,8 @@ class PostRequest extends FormRequest
 
 
             "admin_id"=>"required|integer",
-            "category_id"=>"required|integer",
+            "post_type_id"=>"required|integer",
+            "tag_id"=>"required|integer",
             //
         ];
     }

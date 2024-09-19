@@ -8,6 +8,7 @@ use App\Http\Resources\V1\CategoryResource;
 use App\Models\Category;
 use App\Models\Post;
 use Filament\Forms;
+use Filament\Forms\Components\Checkbox;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Forms\Components\Select;
@@ -34,7 +35,7 @@ class PostResource extends Resource
                 MarkdownEditor::make("content")->required(),
 
 
-
+                Checkbox::make("published"),
                 FileUpload::make('Post_Photos'),
 
                 TextInput::make("admin_id")->hidden()

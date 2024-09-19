@@ -16,11 +16,8 @@ class PostType extends Model
     {
         return $this->belongsToMany(Post::class);
     }
-    public function category_post_type()
-    {
-        return $this->belongsToMany(Category::class,);
-
-
+    public function categories(){
+        return $this->belongsToMany(Category::class, 'categories_posts_types'); // Explicitly set the pivot table
     }
 
 

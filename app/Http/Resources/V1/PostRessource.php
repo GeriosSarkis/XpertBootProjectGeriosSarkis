@@ -25,6 +25,7 @@ class PostRessource extends JsonResource
                 "content"=>$this->content,
                 "created_at"=>$this->created_at,
                 "updated_at"=>$this->updated_at,
+                'post_type_id'=>$this->post_type_id
 
 
 

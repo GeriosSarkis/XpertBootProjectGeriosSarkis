@@ -1,6 +1,7 @@
 <?php
 
 use app\Http\Controllers\API\V1\AdminController;
+use App\Http\Controllers\API\V1\AuthController;
 use App\Http\Controllers\API\V1\CategoryController;
 use app\Http\Controllers\API\V1\MediaController;
 use App\Http\Controllers\API\V1\PostController;
@@ -12,48 +13,85 @@ use Illuminate\Support\Facades\Route;
 Route::get('/user', function (Request $request) {
     return $request->user();
 })->middleware('auth:sanctum');
+//Login
+
+Route::post("/login",[AuthController::class,"login"]);
+/// LOgin
+
 ///Posts
+
+
+/// POST Route///
+Route::middleware('auth:sanctum')->group(function () {
+    Route::post("/posts",[PostController::class,"store"]);
+    Route::put("/posts/{id}",[PostController::class,"update"]);
+    Route::delete("/posts/{id}", [PostController::class, "destroy"]);
+    Route::patch("/posts/{id}/replace",[PostController::class,"replace"]);
+
+});
+
 Route::get("/posts",[PostController::class,"index"]);
-Route::get("/post/{id}",[PostController::class,"show"]);
-Route::post("/post",[PostController::class,"store"]);
-Route::put("/post/{id}",[PostController::class,"update"]);
-Route::delete("/post/{id}", [PostController::class, "destroy"]);
+Route::get("/posts/{id}",[PostController::class,"show"]);
 
-Route::patch("/post/{id}/replace",[PostController::class,"replace"]);
-/// Medias
-Route::get("/medias",[MediaController::class,"index"]);
+/// Post Route
+/// Media Route
+
+Route::get("/media",[MediaController::class,"index"]);
 Route::get("/media/{id}",[MediaController::class,"show"]);
-Route::post("/media",[MediaController::class,"store"]);
-Route::put("/media/{id}",[MediaController::class,"update"]);
-Route::delete("/media/{id}", [MediaController::class, "destroy"]);
-Route::post("/media",[MediaController::class,"store"]);
-Route::patch("/media/{id}/replace",[MediaController::class,"replace"]);
-//// category
-Route::get("/categorys",[CategoryController::class,"index"]);
-Route::get("/category/{id}",[CategoryController::class,"show"]);
+Route::middleware('auth:sanctum')->group(function () {
 
-Route::put("/category/{id}",[CategoryController::class,"update"]);
-Route::delete("/category/{id}", [CategoryController::class, "destroy"]);
-Route::post("/category",[CategoryController::class,"store"]);
-Route::patch("/category/{id}/replace",[CategoryController::class,"replace"]);
+    Route::put("/media/{id}",[MediaController::class,"update"]);
+    Route::delete("/media/{id}", [MediaController::class, "destroy"]);
+    Route::post("/media",[MediaController::class,"store"]);
+    Route::patch("/media/{id}/replace",[MediaController::class,"replace"]);
+
+});
+
+/// Media Route
+//// category
+///
+///
+
+Route::middleware('auth:sanctum')->group(function () {
+
+
+    Route::put("/categories/{id}",[CategoryController::class,"update"]);
+    Route::delete("/categories/{id}", [CategoryController::class, "destroy"]);
+    Route::post("/categories",[CategoryController::class,"store"]);
+    Route::patch("/categories/{id}/replace",[CategoryController::class,"replace"]);
+
+});
+Route::get("/categories",[CategoryController::class,"index"]);
+Route::get("/categories/{id}",[CategoryController::class,"show"]);
+
 ///admin
+
+Route::middleware('auth:sanctum')->group(function () {
+
+    Route::put("/admins/{id}",[AdminController::class,"update"]);
+    Route::delete("/admins/{id}", [AdminController::class, "destroy"]);
+    Route::post("/admins",[AdminController::class,"store"]);
+    Route::patch("/admins/{id}/replace",[AdminController::class,"replace"]);
+
+});
 Route::get("/admins",[AdminController::class,"index"]);
-Route::get("/admin/{id}",[AdminController::class,"show"]);
-Route::put("/admin/{id}",[AdminController::class,"update"]);
-Route::delete("/admin/{id}", [AdminController::class, "destroy"]);
-Route::post("/admin",[AdminController::class,"store"]);
-Route::patch("/admin/{id}/replace",[AdminController::class,"replace"]);
+Route::get("/admins/{id}",[AdminController::class,"show"]);
 
 /////tags////
 ///
+
+Route::middleware('auth:sanctum')->group(function () {
+
+    Route::put("/tags/{id}",[TagController::class,"update"]);
+    Route::delete("/tags/{id}", [TagController::class, "destroy"]);
+    Route::post("/tags",[TagController::class,"store"]);
+    Route::patch("/tags/{id}/replace",[TagController::class,"replace"]);
+});
 Route::get("/tags",[TagController::class,"index"]);
-Route::get("/tag/{id}",[TagController::class,"show"]);
-Route::put("/tag/{id}",[TagController::class,"update"]);
-Route::delete("/tag/{id}", [TagController::class, "destroy"]);
-Route::post("/tag",[TagController::class,"store"]);
-Route::patch("/tag/{id}/replace",[TagController::class,"replace"]);
-///////// Category Pots//R
+Route::get("/tags/{id}",[TagController::class,"show"]);
+
+///////// Category Pot Flutter///
 
 
 
-Route::get("/category/{id}/posts", [CategoryPostsController::class, "index"]);
+Route::get("/categories/{id}/posts", [CategoryPostsController::class, "index"]);

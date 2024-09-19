@@ -14,8 +14,8 @@ class PostsFilter extends QueryFilter
         $likeStr = str_replace('*', '%', $value);
         return $this->builder->where('title', 'like', $likeStr);
     }
-    public function category($value){
-        return $this->builder->where("category", $value);
+    public function categories($value){
+        return $this->builder->where("categories", $value);
 
     }
     public function updatedAt($value) {

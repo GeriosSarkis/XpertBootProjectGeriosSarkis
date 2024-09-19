@@ -54,7 +54,7 @@ class DatabaseSeeder extends Seeder
 
         $posts_type->each(function ($posts_type) use ($categories) {
             // Attach one or more random categories to the post
-            $posts_type->category_post_type()->attach(
+            $posts_type->categories()->attach(
                 $categories->random(rand(1, $categories->count()))->pluck('id')->toArray()
             );
         });

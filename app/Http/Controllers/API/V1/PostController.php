@@ -40,9 +40,12 @@ class PostController extends Controller
 
         $post =Post::create($request->all());
         if ($post) {
-            $post->attach_category(request("category_id"));
-            $post->attach_meida(request("media_id"));
-            $post->admin()->attach(request("admin_id"));
+            $post->post_type_id=request("post_type_id");
+
+            $post->attach_tag(request("tag_id"));
+            $post->attach_media(request("media_id"));
+            $post->attach_admin(request("admin_id"));
+            $post->save();
 
 
             return response()->json([
@@ -99,8 +102,8 @@ class PostController extends Controller
             $admin_id=request("admin_id");
             $category_id=request("category_id");
             $media_id=request("media_id");
-            $post->attach_category(request("category_id"));
-            $post->attach_meida(request("media_id"));
+            $post->post_type_id=$request->get('post_type_id');
+            $post->attach_media(request("media_id"));
             $post->attach_admin(request("admin_id"));
             return new  PostRessource($post);
         }
@@ -113,7 +116,7 @@ class PostController extends Controller
     }
     public function  replace(PostRequest $request, string $id)
     {
-        $post = Post::findOrFail($id);
+        $post = Post::find($id);
         if ($post) {
             $update_posts =$post->update($request->all());
          $admin_id=request("admin_id");
