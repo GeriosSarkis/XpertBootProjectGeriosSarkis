@@ -28,8 +28,9 @@ return new class extends Migration
             //$table->engine('InnoDB');
             $table->bigIncrements('id'); // permission id
             $table->string('name',191);       // For MyISAM use string('name', 225); // (or 166 for InnoDB with Redundant/Compact row format)
-            $table->string('guard_name',191)->default('web');git ; // For MyISAM use string('guard_name', 25);
+            $table->string('guard_name',191)->default('web'); ; // For MyISAM use string('guard_name', 25);
             $table->timestamps();
+
 
             $table->unique(['name', 'guard_name']);
             // Ensure utf8mb4 and InnoDB settings
