@@ -15,6 +15,7 @@ use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Filament\Tables\Actions\Action as TableAction;
 
 class PostTypeResource extends Resource
 {
@@ -44,6 +45,10 @@ class PostTypeResource extends Resource
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
+                TableAction::make('createPost')
+                    ->label('Add Post')
+                    ->url(fn ($record) => route('filament.admin.resources.posts.create', ['post_type_id' => $record->id]))
+                    ->icon('heroicon-o-plus'),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
