@@ -38,9 +38,7 @@ class PermissionResource extends Resource
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime(),
             ])
-            ->columns([
-                //
-            ])
+
             ->filters([
                 //
             ])

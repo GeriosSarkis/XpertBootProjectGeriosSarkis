@@ -72,4 +72,14 @@ class PostTypeResource extends Resource
             'edit' => Pages\EditPostType::route('/{record}/edit'),
         ];
     }
+
+
+    public static function canCreate(): bool
+    {
+        return auth()->user()->can('create post type');
+    }
+
+
+
+
 }

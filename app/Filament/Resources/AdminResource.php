@@ -4,9 +4,11 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\AdminResource\Pages;
 use App\Filament\Resources\AdminResource\RelationManagers;
+use App\Filament\Resources\AdminRessourceResource\RelationManagers\PostTypeRelationManager;
 use App\Models\Admin;
 use Faker\Provider\ar_EG\Text;
 use Filament\Forms;
+use Filament\Forms\Components\MultiSelect;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -26,12 +28,17 @@ class AdminResource extends Resource
     {
         return $form
             ->schema([
-            TextInput::make("username"),
-            TextInput::make("email")->email(),
-            TextInput::make ("phone_number"),
-            TextInput::make("password")->password()->minLength(8)->visibleOn("create")
+                Forms\Components\TextInput::make('name')
+                    ->required(),
+                Forms\Components\TextInput::make('email')
+                    ->email()
+                    ->required(),
 
-                //
+                // MultiSelect for assigning roles to the admin
+                MultiSelect::make('roles')
+                    ->relationship('roles', 'name')
+                    ->preload()
+                    ->label('Roles'),
             ]);
     }
 
@@ -62,7 +69,7 @@ class AdminResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
+
         ];
     }
 

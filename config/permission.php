@@ -3,6 +3,8 @@
 return [
 
     'models' => [
+        'role' => App\Models\Role::class,  // Use your custom Role model
+        'permission' => Spatie\Permission\Models\Permission::class,
 
         /*
          * When using the "HasPermissions" trait from this package, we need to know which

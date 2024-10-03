@@ -1,35 +1,40 @@
 <?php
-
 namespace App\Filament\Resources;
 
+use App\Models\CustomRole; // Use the custom Role model
 use App\Filament\Resources\RoleResource\Pages;
-use App\Filament\Resources\RoleResource\RelationManagers;
-use Spatie\Permission\Models\Role;
-
-
+use Filament\Forms\Components\HasManyRepeater;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class RoleResource extends Resource
 {
-    protected static ?string $model = Role::class;
+    // Use your custom Role model here
+    protected static ?string $model = CustomRole::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
     public static function form(Form $form): Form
-    {  return $form
-        ->schema([
-            Forms\Components\TextInput::make('name')
-                ->required(),
-            Forms\Components\Select::make('permissions')
-                ->multiple()
-                ->relationship('permissions', 'name'),
-        ]);
+    {
+        return $form
+            ->schema([
+                Forms\Components\TextInput::make('name')
+                    ->required()
+                    ->label('Role Name'),
+
+                // Add the HasManyRepeater to manage post types
+                HasManyRepeater::make('postTypes')
+                    ->relationship('postTypes')
+                    ->schema([
+                        Forms\Components\TextInput::make('ad_type_name')
+                            ->label('Post Type Name')
+                            ->required(),
+                    ])
+                    ->label('Post Types'),
+            ]);
     }
 
     public static function table(Table $table): Table
@@ -37,11 +42,7 @@ class RoleResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('name'),
-                Tables\Columns\TextColumn::make('created_at')
-                    ->dateTime(),
-            ])
-            ->columns([
-                //
+                Tables\Columns\TextColumn::make('created_at')->dateTime(),
             ])
             ->filters([
                 //
@@ -72,3 +73,5 @@ class RoleResource extends Resource
         ];
     }
 }
+
+
