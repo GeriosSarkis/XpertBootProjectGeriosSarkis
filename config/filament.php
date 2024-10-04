@@ -1,10 +1,13 @@
 <?php
 
 return [
+
     'auth' => [
-        'guard' => 'admin',  // Use the 'admin' guard for authentication
-        'login' => \Filament\Http\Livewire\Auth\Login::class,  // Use Filament's default login component
+        'guard' => 'admin',  // This should match the guard you set for admins
+        'guards' => ['web', 'admin'], // Allow Filament to support multiple guards
     ],
+
+
     /*
     |--------------------------------------------------------------------------
     | Broadcasting

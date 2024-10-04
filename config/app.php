@@ -58,7 +58,7 @@ return [
         Illuminate\Translation\TranslationServiceProvider::class,
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,  // Blade and view provider
-
+        App\Providers\Filament\FilamentServiceProvider::class, // Re
         /*
          * Custom or Third-Party Service Providers
          */

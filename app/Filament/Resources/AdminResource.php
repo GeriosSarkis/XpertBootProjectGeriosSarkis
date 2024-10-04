@@ -4,9 +4,7 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\AdminResource\Pages;
 use App\Filament\Resources\AdminResource\RelationManagers;
-use App\Filament\Resources\AdminRessourceResource\RelationManagers\PostTypeRelationManager;
 use App\Models\Admin;
-use Faker\Provider\ar_EG\Text;
 use Filament\Forms;
 use Filament\Forms\Components\MultiSelect;
 use Filament\Forms\Components\TextInput;
@@ -15,9 +13,7 @@ use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
-use Livewire\Component;
+use Illuminate\Support\Facades\Hash;
 
 class AdminResource extends Resource
 {
@@ -30,15 +26,25 @@ class AdminResource extends Resource
         return $form
             ->schema([
 
-                Forms\Components\TextInput::make('username')->required(),
-                Forms\Components\TextInput::make('name')->required()
+                TextInput::make('username')
                     ->required(),
-                Forms\Components\TextInput::make('email')->required()
-                    ->email()
-                    ->required(),
-                Forms\Components\TextInput::make('password')->required(),
 
-                Forms\Components\TextInput::make('phone_number')->required(),
+                TextInput::make('name')
+                    ->required(),
+
+                TextInput::make('email')
+                    ->required()
+                    ->email(),
+
+                TextInput::make('password')
+                    ->password()  // Mark as a password field
+                    ->dehydrateStateUsing(fn ($state) => $state ? Hash::make($state) : null)  // Hash the password when saving, only if provided
+                    ->required(fn ($livewire) => $livewire instanceof Pages\CreateAdmin)  // Only required on creation
+                    ->nullable()  // Allow it to be null for updates
+                    ->label('Password'),
+
+                TextInput::make('phone_number')
+                    ->required(),
 
                 // MultiSelect for assigning roles to the admin
                 MultiSelect::make('roles')
@@ -52,31 +58,27 @@ class AdminResource extends Resource
     {
         return $table
             ->columns([
-                TextColumn::make("username"),
-                TextColumn::make("email"),
-                TextColumn::make("password"),
-                TextColumn::make("phone_number"),
-                TextColumn::make("created_at"),
-                TextColumn::make("updated_at"),
-                //
-            ])
-            ->filters([
-                //
+                TextColumn::make('username'),
+                TextColumn::make('email'),
+                // Password should not be displayed in the table
+                TextColumn::make('phone_number'),
+                TextColumn::make('created_at')
+                    ->dateTime(),
+                TextColumn::make('updated_at')
+                    ->dateTime(),
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
             ])
             ->bulkActions([
-                Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make(),
-                ]),
+                Tables\Actions\DeleteBulkAction::make(),
             ]);
     }
 
     public static function getRelations(): array
     {
         return [
-
+            // Define relations here if needed
         ];
     }
 

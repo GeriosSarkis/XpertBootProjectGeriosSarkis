@@ -73,27 +73,31 @@ class PostTypeResource extends Resource
         ];
     }
 
-
-
     public static function canViewAny(): bool
     {
-        return auth('admin')->user()->can('view post types');
+        $user = auth('admin')->user() ?? auth('web')->user();  // Check either 'admin' or 'web' guard
+        return $user && $user->can('view post types');
     }
 
     public static function canCreate(): bool
     {
-        return auth('admin')->user()->can('create post types');
+        $user = auth('admin')->user() ?? auth('web')->user();
+        return $user && $user->can('create post types');
     }
 
     public static function canEdit($record): bool
     {
-        return auth('admin')->user()->can('edit post types');
+        $user = auth('admin')->user() ?? auth('web')->user();
+        return $user && $user->can('edit post types');
     }
 
     public static function canDelete($record): bool
     {
-        return auth('admin')->user()->can('delete post types');
+        $user = auth('admin')->user() ?? auth('web')->user();
+        return $user && $user->can('delete post types');
     }
+
+
 
 
 
