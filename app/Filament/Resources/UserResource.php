@@ -2,10 +2,13 @@
 
 namespace App\Filament\Resources;
 
+use App\Filament\Resources\RolesRelationManagerResource\RelationManagers\RolesRelationManager;
+use App\Filament\Resources\RolesRelationManagerResource\RelationManagers\UsersRelationManager;
 use App\Filament\Resources\UserResource\Pages;
 use App\Filament\Resources\UserResource\RelationManagers;
 use App\Models\User;
 use Filament\Forms;
+use Filament\Forms\Components\MultiSelect;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -28,7 +31,11 @@ class UserResource extends Resource
                 TextInput::make("name"),
                 TextInput::make("email")->email(),
                 TextInput::make("password")->password()->minLength(8)->visibleOn("create")
-            ]);
+
+           ,MultiSelect::make('roles')
+               ->relationship('roles', 'name') // Link to roles via the roles() relationship
+               ->label('Roles')
+           ]);
     }
 
     public static function table(Table $table): Table
@@ -56,7 +63,7 @@ class UserResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
+            RolesRelationManager::class
         ];
     }
 

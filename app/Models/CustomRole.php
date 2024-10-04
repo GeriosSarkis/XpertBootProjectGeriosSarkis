@@ -18,5 +18,10 @@ class CustomRole extends SpatieRole
         return $this->belongsToMany(Admin::class, 'admin_role');
     }
 
+    public function permissions(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
+    {
+        return $this->belongsToMany(Permission::class, 'role_has_permissions','role_id','permission_id');
+    }
+
 }
 ?>

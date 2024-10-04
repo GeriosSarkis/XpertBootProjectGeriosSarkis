@@ -1,6 +1,7 @@
 <?php
 namespace App\Filament\Resources;
 
+use App\Filament\Resources\PermiionsRelationManagerResource\RelationManagers\PermissionsRelationManager;
 use App\Models\CustomRole; // Use the custom Role model
 use App\Filament\Resources\RoleResource\Pages;
 use Filament\Forms\Components\HasManyRepeater;
@@ -34,6 +35,9 @@ class RoleResource extends Resource
                             ->required(),
                     ])
                     ->label('Post Types'),
+                Forms\Components\MultiSelect::make('permissions')
+                    ->relationship('permissions', 'name') // Sync the permissions relationship
+                    ->label('Permissions'),
             ]);
     }
 
@@ -60,7 +64,7 @@ class RoleResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
+            PermissionsRelationManager::class
         ];
     }
 
