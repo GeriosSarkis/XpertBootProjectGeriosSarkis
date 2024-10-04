@@ -59,27 +59,32 @@ return [
 
     // config/auth.php
 
+    // config/auth.php
+
     'guards' => [
         'web' => [
             'driver' => 'session',
-            'provider' => 'users',
+            'provider' => 'users',  // Guard for users table
         ],
+
         'admin' => [
             'driver' => 'session',
-            'provider' => 'admins',
+            'provider' => 'admins',  // Guard for admins table
         ],
     ],
 
     'providers' => [
         'users' => [
             'driver' => 'eloquent',
-            'model' => App\Models\User::class,
+            'model' => App\Models\User::class,  // Model for users table
         ],
+
         'admins' => [
             'driver' => 'eloquent',
-            'model' => App\Models\Admin::class,
+            'model' => App\Models\Admin::class,  // Model for admins table
         ],
     ],
+
 
     'passwords' => [
         'users' => [
