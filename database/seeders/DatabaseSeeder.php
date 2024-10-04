@@ -7,6 +7,7 @@ use App\Models\PostType;
 use App\Models\User;
 use App\Models\_PostType;
 use App\Models\Tag;
+use Database\Seeders\RolePermissionSeeder;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -23,7 +24,7 @@ class DatabaseSeeder extends Seeder
         $categories = Category::factory()->count(5)->create(); // Corrected plural name
         $media = Media::factory()->count(5)->create();
         $admins = Admin::factory()->count(3)->create(); // Corrected plural name
-
+        $this->call(RolePermissionSeeder::class);
         // Create models
 
         // ... other models ...

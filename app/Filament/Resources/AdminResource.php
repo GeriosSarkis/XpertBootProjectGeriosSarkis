@@ -17,6 +17,7 @@ use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Livewire\Component;
 
 class AdminResource extends Resource
 {
@@ -28,11 +29,16 @@ class AdminResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('name')
+
+                Forms\Components\TextInput::make('username')->required(),
+                Forms\Components\TextInput::make('name')->required()
                     ->required(),
-                Forms\Components\TextInput::make('email')
+                Forms\Components\TextInput::make('email')->required()
                     ->email()
                     ->required(),
+                Forms\Components\TextInput::make('password')->required(),
+
+                Forms\Components\TextInput::make('phone_number')->required(),
 
                 // MultiSelect for assigning roles to the admin
                 MultiSelect::make('roles')
@@ -48,6 +54,7 @@ class AdminResource extends Resource
             ->columns([
                 TextColumn::make("username"),
                 TextColumn::make("email"),
+                TextColumn::make("password"),
                 TextColumn::make("phone_number"),
                 TextColumn::make("created_at"),
                 TextColumn::make("updated_at"),

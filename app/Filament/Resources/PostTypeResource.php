@@ -74,9 +74,25 @@ class PostTypeResource extends Resource
     }
 
 
+
+    public static function canViewAny(): bool
+    {
+        return auth('admin')->user()->can('view post types');
+    }
+
     public static function canCreate(): bool
     {
-        return auth()->user()->can('create post type');
+        return auth('admin')->user()->can('create post types');
+    }
+
+    public static function canEdit($record): bool
+    {
+        return auth('admin')->user()->can('edit post types');
+    }
+
+    public static function canDelete($record): bool
+    {
+        return auth('admin')->user()->can('delete post types');
     }
 
 

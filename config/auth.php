@@ -42,7 +42,7 @@ return [
         ],
         'admin' => [
             'driver' => 'session',
-            'provider' => 'admins',
+            'provider' => 'admins',  // This will use the admin provider
         ],
     ],
 
@@ -64,17 +64,14 @@ return [
     */
 
     'providers' => [
-        'roles' => [
-            'driver' => 'eloquent',
-            'model' => App\Models\Role::class,  // Use your custom Role model
-        ],
+
         'users' => [
             'driver' => 'eloquent',
             'model' => env('AUTH_MODEL', App\Models\User::class),
         ],
         'admins' => [
             'driver' => 'eloquent',
-            'model' => App\Models\Admin::class,
+            'model' => App\Models\Admin::class,  // Admin model
         ],
 
         // 'users' => [

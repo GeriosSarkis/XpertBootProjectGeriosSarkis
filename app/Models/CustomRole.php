@@ -14,6 +14,9 @@ class CustomRole extends SpatieRole
     {
         return $this->belongsToMany(PostType::class, 'custom_role_post_type'); // Ensure this is correct
     }
+    public function admins(){
+        return $this->belongsToMany(Admin::class, 'admin_role');
+    }
 
 }
 ?>

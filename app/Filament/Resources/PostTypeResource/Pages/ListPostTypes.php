@@ -2,9 +2,10 @@
 
 namespace App\Filament\Resources\PostTypeResource\Pages;
 
+use Filament\Actions\CreateAction;
 use App\Filament\Resources\PostTypeResource;
 use Filament\Resources\Pages\ListRecords;
-use Filament\Pages\Actions\CreateAction; // Import the correct CreateAction
+ // Import the correct CreateAction
 use Filament\Tables\Actions\Action as TableAction; // Correct import for table row actions
 
 class ListPostTypes extends ListRecords
@@ -15,8 +16,7 @@ class ListPostTypes extends ListRecords
     protected function getHeaderActions(): array
     {
         return [
-            // Correct CreateAction class for creating new post types
-            CreateAction::make(),
+            CreateAction::make(), // This adds the "Create Post Type" button
         ];
     }
 
@@ -31,6 +31,7 @@ class ListPostTypes extends ListRecords
                 ->icon('heroicon-o-plus'),
         ];
     }
+
 
 }
 

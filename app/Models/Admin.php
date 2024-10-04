@@ -22,7 +22,7 @@ class Admin extends Model
     }
     public function roles(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
     {
-        return $this->belongsToMany(Role::class, 'admin_role'); // 'admin_role' is the pivot table
+        return $this->belongsToMany(CustomRole::class, 'admin_role'); // 'admin_role' is the pivot table
     }
 
 }

@@ -2,8 +2,8 @@
 
 return [
     'auth' => [
-        'guard' => 'admin',
-        'logout_redirect' => '/',
+        'guard' => 'admin',  // Use the 'admin' guard for authentication
+        'login' => \Filament\Http\Livewire\Auth\Login::class,  // Use Filament's default login component
     ],
     /*
     |--------------------------------------------------------------------------
